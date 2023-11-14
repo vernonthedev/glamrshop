@@ -1,0 +1,57 @@
+{% extends 'adminDashboard/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container register-form">
+              <div class="form">
+                <div class="note">
+                  <p>Update Customer Details</p>
+                </div>
+                <div class="form-content">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {% render_field userForm.first_name class="form-control" placeholder="First Name" %}
+                      </div>
+                      <div class="form-group">
+                        {% render_field userForm.username class="form-control" placeholder="Username" %}
+                      </div>
+                      <div class="form-group">
+                        {% render_field customerForm.mobile class="form-control" placeholder="Contact" %}
+                      </div>
+                      <div class="form-group">
+                        {% render_field customerForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        {% render_field userForm.last_name class="form-control" placeholder="Last Name" %}
+                      </div>
+                      <div class="form-group">
+                        {% render_field userForm.password class="form-control" placeholder="Password" %}
+                      </div>
+                      <div class="form-group">
+                        {% render_field customerForm.address class="form-control" placeholder="Address" %}
+                      </div>
+          
+                    </div>
+                  </div>
+                  <button class="btnSubmit btn btn-warning btn-icon-split" type="submit">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="text">Update Customer</span>
+                </button>
+                </div>
+              </div>
+            </div>
+          </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -148,7 +148,7 @@ def update_customer_view(request,pk):
             user.save()
             customerForm.save()
             return redirect('view-customer')
-    return render(request,'adminDashboard/admin_update_customer.html',context=mydict)
+    return render(request,'adminDashboard/update_customer.html',context=mydict)
 
 # admin view the product
 @login_required(login_url='adminlogin')
