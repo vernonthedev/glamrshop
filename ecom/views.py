@@ -17,7 +17,7 @@ def home_view(request):
         product_count_in_cart=0
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'ecom/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'adminDashboard/base.html',{'products':products,'product_count_in_cart':product_count_in_cart})
 
 
 
@@ -58,7 +58,7 @@ def afterlogin_view(request):
     if is_customer(request.user):
         return redirect('customer-home')
     else:
-        return redirect('admin-dashboard')
+        return redirect('admin-dash')
 
 #---------------------------------------------------------------------------------
 #------------------------ ADMIN RELATED VIEWS START ------------------------------
@@ -140,7 +140,7 @@ def admin_add_product_view(request):
         if productForm.is_valid():
             productForm.save()
         return HttpResponseRedirect('admin-products')
-    return render(request,'adminDashboard/admin_add_products.html',{'productForm':productForm})
+    return render(request,'adminDashboard/add_product.html',{'productForm':productForm})
 
 
 @login_required(login_url='adminlogin')
