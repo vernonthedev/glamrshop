@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from . import models
+from .models import Customer
 
 
 class CustomLoginForm(AuthenticationForm):
@@ -24,8 +25,14 @@ class CustomerUserForm(forms.ModelForm):
         
 class CustomerForm(forms.ModelForm):
     class Meta:
-        model=models.Customer
-        fields=['address','mobile','profile_pic']
+        model = Customer
+        fields = ['address', 'mobile', 'profile_pic']
+        widgets = {
+            'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Address'}),
+            'mobile': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Mobile'}),
+            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
+    
 
 class ProductForm(forms.ModelForm):
     class Meta:
