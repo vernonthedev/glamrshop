@@ -159,7 +159,7 @@
         <div class="header-alert-news">
           <p>
             <b>Free Shipping</b>
-            This Week Order Over - $55
+            This Week Order Over - UGX 100,000
           </p>
         </div>
 
@@ -195,19 +195,36 @@
 
         <div class="header-search-container">
 
-          <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
-
-          <button class="search-btn">
-            <ion-icon name="search-outline"></ion-icon>
-          </button>
+          <form method="get" action="/search">
+            <input type="search" name="query" id="query" class="search-field" placeholder="Enter your product name...">
+            <button class="search-btn" type="submit">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+          </form>
+          
 
         </div>
 
         <div class="header-user-actions">
 
-          <button class="action-btn">
-            <ion-icon name="person-outline"></ion-icon>
-          </button>
+        <nav class="desktop-navigation-menu">
+          <div class="container-fluid">
+            <ul class="desktop-menu-category-list">
+              <li class="menu-category">
+                <a href="#" class="menu-title">Account</a>
+                <div class="dropdown-panel">
+                  <ul class="dropdown-panel-list">
+                    <li class="menu-title">
+                      <a href="/customerlogin">Login</a>
+                      <a href="/customersignup">Sign Up</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+          
 
           <button class="action-btn">
             <ion-icon name="heart-outline"></ion-icon>
@@ -216,7 +233,7 @@
 
           <button class="action-btn">
             <ion-icon name="bag-handle-outline"></ion-icon>
-            <span class="count">0</span>
+            <span class="count">{{ product_count_in_cart }}</span>
           </button>
 
         </div>
@@ -225,6 +242,8 @@
 
     </div>
 
+   
+
     <nav class="desktop-navigation-menu">
 
       <div class="container">
@@ -232,7 +251,7 @@
         <ul class="desktop-menu-category-list">
 
           <li class="menu-category">
-            <a href="#" class="menu-title">Home</a>
+            <a href="/" class="menu-title">Home</a>
           </li>
 
           <li class="menu-category">
@@ -268,7 +287,7 @@
 
                 <li class="panel-list-item">
                   <a href="#">
-                    <img src="./assets/images/electronics-banner-1.jpg" alt="headphone collection" width="250"
+                    <img src="{%static '/assets/images/electronics-banner-1.jpg'%}" alt="headphone collection" width="250"
                       height="119">
                   </a>
                 </li>
@@ -303,7 +322,7 @@
 
                 <li class="panel-list-item">
                   <a href="#">
-                    <img src="./assets/images/mens-banner.jpg" alt="men's fashion" width="250" height="119">
+                    <img src="{%static '/assets/images/mens-banner.jpg'%}" alt="men's fashion" width="250" height="119">
                   </a>
                 </li>
 
@@ -337,7 +356,7 @@
 
                 <li class="panel-list-item">
                   <a href="#">
-                    <img src="./assets/images/womens-banner.jpg" alt="women's fashion" width="250" height="119">
+                    <img src="{%static '/assets/images/womens-banner.jpg'%}" alt="women's fashion" width="250" height="119">
                   </a>
                 </li>
 
@@ -371,7 +390,7 @@
 
                 <li class="panel-list-item">
                   <a href="#">
-                    <img src="./assets/images/electronics-banner-2.jpg" alt="mouse collection" width="250" height="119">
+                    <img src="{% static '/assets/images/electronics-banner-2.jpg'%}" alt="mouse collection" width="250" height="119">
                   </a>
                 </li>
 
@@ -381,103 +400,39 @@
           </li>
 
           <li class="menu-category">
-            <a href="#" class="menu-title">Men's</a>
-
-            <ul class="dropdown-list">
-
-              <li class="dropdown-item">
-                <a href="#">Shirt</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Shorts & Jeans</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Safety Shoes</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Wallet</a>
-              </li>
-
-            </ul>
-          </li>
-
-          <li class="menu-category">
-            <a href="#" class="menu-title">Women's</a>
-
-            <ul class="dropdown-list">
-
-              <li class="dropdown-item">
-                <a href="#">Dress & Frock</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Earrings</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Necklace</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Makeup Kit</a>
-              </li>
-
-            </ul>
-          </li>
-
-          <li class="menu-category">
-            <a href="#" class="menu-title">Jewelry</a>
-
-            <ul class="dropdown-list">
-
-              <li class="dropdown-item">
-                <a href="#">Earrings</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Couple Rings</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Necklace</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Bracelets</a>
-              </li>
-
-            </ul>
-          </li>
-
-          <li class="menu-category">
             <a href="#" class="menu-title">Perfume</a>
 
             <ul class="dropdown-list">
 
               <li class="dropdown-item">
-                <a href="#">Clothes Perfume</a>
+                <a href="#">Women's</a>
               </li>
 
               <li class="dropdown-item">
-                <a href="#">Deodorant</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Flower Fragrance</a>
-              </li>
-
-              <li class="dropdown-item">
-                <a href="#">Air Freshener</a>
+                <a href="#">Men's</a>
               </li>
 
             </ul>
           </li>
 
           <li class="menu-category">
-            <a href="#" class="menu-title">Blog</a>
+            <a href="#" class="menu-title">MakeUp Kit</a>
+
+            <ul class="dropdown-list">
+
+              <li class="dropdown-item">
+                <a href="#">Liner</a>
+              </li>
+
+              <li class="dropdown-item">
+                <a href="#">Lip stick</a>
+              </li>
+
+            </ul>
+          </li>
+
+          <li class="menu-category">
+            <a href="#" class="menu-title">About Us</a>
           </li>
 
           <li class="menu-category">

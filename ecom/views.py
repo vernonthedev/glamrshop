@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect,reverse, get_object_or_404
 from . import forms,models
 from django.http import HttpResponseRedirect,HttpResponse
 from django.core.mail import send_mail
@@ -9,6 +9,7 @@ from django.conf import settings
 
 def home_view(request):
     products=models.Product.objects.all()
+    
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
         counter=product_ids.split('|')
@@ -19,6 +20,28 @@ def home_view(request):
         return HttpResponseRedirect('afterlogin')
     return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
 
+
+def view_product(request, product_id=None):
+    products = models.Product.objects.all()
+    selected_product = None
+
+    if product_id:
+        selected_product = get_object_or_404(models.Product, id=product_id)
+
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))
+    else:
+        product_count_in_cart = 0
+
+    context = {
+        'products': products,
+        'product_count_in_cart': product_count_in_cart,
+        'selected_product': selected_product,
+    }
+
+    return render(request, 'ecom/product_view.html', context)
 
 
 #for showing login button for admin()
