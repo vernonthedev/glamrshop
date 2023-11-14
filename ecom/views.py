@@ -159,7 +159,7 @@ def update_product_view(request,pk):
         if productForm.is_valid():
             productForm.save()
             return redirect('admin-products')
-    return render(request,'adminDashboard/admin_update_product.html',{'productForm':productForm})
+    return render(request,'adminDashboard/update_product.html',{'productForm':productForm})
 
 
 @login_required(login_url='adminlogin')

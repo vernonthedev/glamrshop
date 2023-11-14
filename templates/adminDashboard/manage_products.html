@@ -22,21 +22,29 @@
                 </thead>
       
                 <tbody>
+                    {% if products %}
                     {% for p in products %}
-                        {% if p %}
-
-                            <tr>
-                                <td> {{p.name}}</td>
-                                <td> <img src="{% static p.product_image.url %}" alt="Image Profile" height="40px" width="40px" /></td>
-                                <td>{{p.price}}</td>
-                                <td><a class="btn btn-primary btn-sm" href="{% url 'update-product' p.id  %}"><i class="fas fa-info-circle"></i></a>
-                                <a class="btn btn-danger btn-sm" href="{% url 'delete-product' p.id  %}"><i class="fas fa-trash"></i></a></td>
-                            </tr>
-                            {%else%}
-                            <br><br><br>
+                        <tr>
+                            <td>{{ p.name }}</td>
+                            <td>
+                                {% if p.product_image %}
+                                    <img src="{% static p.product_image.url %}" alt="Image Profile" height="40px" width="40px" />
+                                {% endif %}
+                            </td>
+                            <td>{{ p.price }}</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="{% url 'update-product' p.id %}"><i class="fas fa-info-circle"></i></a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'delete-product' p.id %}"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">
                             <h1>No Products!!</h1>
-                            {% endif %}
-                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
                 </tbody>
              
             </table>
