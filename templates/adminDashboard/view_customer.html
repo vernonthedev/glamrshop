@@ -1,61 +1,57 @@
-{% extends 'adminDashboard/admin_base.html' %}
+
+{% extends 'adminDashboard/base.html' %}
 {% load static %}
 {% block content %}
 
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-  <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
-
-    h6 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-  </style>
-</head>
-<!--
-written By : sumit kumar
-facebook : fb.com/sumit.luv
--->
-<div class="container">
-  <div class="panel panel-danger">
-    <div class="panel-heading">
-      <h6 class="panel-title">Total Customers</h6>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Registered Customers</h6>
     </div>
-    <table class="table table-hover table-bordered" id="dev-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Picture</th>
-          <th>Contact</th>
-          <th>Address</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      {% for c in customers %}
-      <tr>
-        <td> {{c.get_name}}</td>
-        <td> <img src="{% static c.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
-        <td>{{c.mobile}}</td>
-        <td>{{c.address}}</td>
-        <td><a class="btn btn-primary btn-xs" href="{% url 'update-customer' c.id  %}"><span class="glyphicon glyphicon-edit"></span></a>
-        <a class="btn btn-danger btn-xs" href="{% url 'delete-customer' c.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
-
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+      
+                <tbody>
+                    {% if customers %}
+                    {% for c in customers %}
+                        <tr>
+                            <td>{{ c.user }}</td>
+                            <td>
+                                {% if c.profile_pic %}
+                                    <img src="{% static c.profile_pic.url %}" alt="Image Profile" height="40px" width="40px" />
+                                {% endif %}
+                            </td>
+                            <td>{{ c.mobile }}</td>
+                            <td>{{ c.address }}</td>
+                           
+                              <td><a class="btn btn-primary btn-xs" href="{% url 'update-customer' c.id  %}"><i class="fas fa-info-circle"></i></a>
+                                <a class="btn btn-danger btn-xs" href="{% url 'delete-customer' c.id  %}"><i class="fas fa-trash"></i></a></td>
+                            
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">
+                            <h1>No Customers!!</h1>
+                        </td>
+                    </tr>
+                {% endif %}
+                </tbody>
+             
+            </table>
+        </div>
+    </div>
 </div>
-<!--
-developed By : vernonthedev
--->
-{% endblock content %}
+
+{% endblock %}

@@ -24,6 +24,7 @@ urlpatterns = [
     path('adminlogin', LoginView.as_view(template_name='adminDashboard/adminlogin.html'),name='adminlogin'),
     path('admindashboard', views.admin_dashboard,name='admin-dash'),
 
+    path('view-orders', views.admin_view_orders,name='view-orders'),
     path('view-customer', views.view_customer_view,name='view-customer'),
     path('delete-customer/<int:pk>', views.delete_customer_view,name='delete-customer'),
     path('update-customer/<int:pk>', views.update_customer_view,name='update-customer'),

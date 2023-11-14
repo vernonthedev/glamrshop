@@ -87,7 +87,33 @@ def admin_dashboard(request):
     'ordercount':ordercount,
     'data':zip(ordered_products,ordered_bys,orders),
     }
+    return render(request,'adminDashboard/base.html',context=mydict)
+
+@login_required(login_url='adminlogin')
+def admin_view_orders(request):
+    # for cards on dashboard
+    customercount=models.Customer.objects.all().count()
+    productcount=models.Product.objects.all().count()
+    ordercount=models.Orders.objects.all().count()
+
+    # for recent order tables
+    orders=models.Orders.objects.all()
+    ordered_products=[]
+    ordered_bys=[]
+    for order in orders:
+        ordered_product=models.Product.objects.all().filter(id=order.product.id)
+        ordered_by=models.Customer.objects.all().filter(id = order.customer.id)
+        ordered_products.append(ordered_product)
+        ordered_bys.append(ordered_by)
+
+    mydict={
+    'customercount':customercount,
+    'productcount':productcount,
+    'ordercount':ordercount,
+    'data':zip(ordered_products,ordered_bys,orders),
+    }
     return render(request,'adminDashboard/index.html',context=mydict)
+
 
 
 # admin view customer table
