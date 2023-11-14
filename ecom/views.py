@@ -17,11 +17,11 @@ def home_view(request):
         product_count_in_cart=0
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'adminDashboard/base.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
 
 
 
-#for showing login button for admin(by sumit)
+#for showing login button for admin()
 def adminclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
