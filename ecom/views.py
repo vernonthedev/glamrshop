@@ -198,7 +198,7 @@ def admin_view_booking_view(request):
         ordered_by=models.Customer.objects.all().filter(id = order.customer.id)
         ordered_products.append(ordered_product)
         ordered_bys.append(ordered_by)
-    return render(request,'adminDashboard/admin_view_booking.html',{'data':zip(ordered_products,ordered_bys,orders)})
+    return render(request,'adminDashboard/view-orders.html',{'data':zip(ordered_products,ordered_bys,orders)})
 
 
 @login_required(login_url='adminlogin')
