@@ -6,6 +6,16 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth.views import LoginView
+from .forms import CustomLoginForm
+
+
+
+class CustomLoginView(LoginView):
+    form_class = CustomLoginForm
+    template_name = 'ecom/customerlogin.html' 
+
+
 
 def home_view(request):
     products=models.Product.objects.all()

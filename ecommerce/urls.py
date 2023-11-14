@@ -7,6 +7,7 @@ Github: github.com/vernonthedev
 from django.contrib import admin
 from django.urls import path
 from ecom import views
+from ecom.views import CustomLoginView
 from django.contrib.auth.views import LoginView,LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -43,7 +44,8 @@ urlpatterns = [
     #################################################
 
     path('customersignup', views.customer_signup_view),
-    path('customerlogin', LoginView.as_view(template_name='ecom/customerlogin.html'),name='customerlogin'),
+    # path('customerlogin', LoginView.as_view(template_name='ecom/customerlogin.html'),name='customerlogin'),
+    path('customerlogin/', CustomLoginView.as_view(), name='customerlogin'),
     path('customer-home', views.customer_home_view,name='customer-home'),
     path('all-products/<int:product_id>/', views.view_product, name='selected_product'),
 
