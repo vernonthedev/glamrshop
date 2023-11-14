@@ -87,7 +87,7 @@ def admin_dashboard(request):
     'ordercount':ordercount,
     'data':zip(ordered_products,ordered_bys,orders),
     }
-    return render(request,'adminDashboard/index.html',context=mydict)
+    return render(request,'adminDashboard/base.html',context=mydict)
 
 
 
