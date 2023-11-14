@@ -26,6 +26,15 @@
     background-color: transparent; /* Make the background transparent */
 }
 
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 .btn-primary {
     background-color: grey;
     border: 1px solid grey; /* Add a border to the button */
@@ -50,6 +59,12 @@
         {% csrf_token %}
         <h1 class="text-center">Customer Login</h1>
 
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
         <div class="form-group">
             {{ form.username }}
         </div>
@@ -62,10 +77,11 @@
         </div>
 
         <div class="forgot-password">
-            <span><a href="">Forgot Password?</a>
+            <span>
+                <a href="#">Forgot Password?</a>
                 <blockquote>| Already Have Account? | </blockquote>
-                <a href="">Sign Up Here!</a></span>
-            
+                <a href="#">Sign Up Here!</a>
+            </span>
         </div>
     </form>
 </div>
