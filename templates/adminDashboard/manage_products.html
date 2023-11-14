@@ -1,0 +1,46 @@
+{% extends 'adminDashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Products</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+      
+                <tbody>
+                    {% for p in products %}
+                        {% if p %}
+
+                            <tr>
+                                <td> {{p.name}}</td>
+                                <td> <img src="{% static p.product_image.url %}" alt="Image Profile" height="40px" width="40px" /></td>
+                                <td>{{p.price}}</td>
+                                <td><a class="btn btn-primary btn-sm" href="{% url 'update-product' p.id  %}"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'delete-product' p.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            </tr>
+                            {%else%}
+                            <br><br><br>
+                            <h1>No Products!!</h1>
+                            {% endif %}
+                            {% endfor %}
+                </tbody>
+             
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
