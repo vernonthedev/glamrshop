@@ -1,0 +1,90 @@
+{%extends 'ecom/base.html'%}
+{% load static %}
+{% block content %}
+
+
+<div class="container col-md-8">
+    <div class="product-main">
+        {%if products%}
+        <h2 class="title">{{word}}</h2>
+    
+        <div class="product-grid">
+          
+          {% for p in products %}
+          <div class="showcase">
+    
+            <div class="showcase-banner">
+              <a href="{% url 'selected_product' p.id %}">
+              <img src="{% static p.product_image.url %}" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
+            </a>
+            <a href="{% url 'selected_product' p.id %}">
+              <img src="{% static p.product_image.url %}" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
+              </a>
+              <p class="showcase-badge">15%</p>
+    
+              <div class="showcase-actions">
+    
+                <button class="btn-action">
+                  <ion-icon name="heart-outline"></ion-icon>
+                </button>
+    
+                <button class="btn-action">
+                  <ion-icon name="eye-outline"></ion-icon>
+                </button>
+    
+                <button class="btn-action">
+                  <ion-icon name="repeat-outline"></ion-icon>
+                </button>
+    
+                <button class="btn-action">
+                  <ion-icon name="bag-add-outline"></ion-icon>
+                </button>
+    
+              </div>
+    
+            </div>
+    
+            <div class="showcase-content">
+    
+              <a href="#" class="showcase-category">{{p.name}}</a>
+    
+              <a href="#">
+                <h3 class="showcase-title">{{p.description}}</h3>
+              </a>
+    
+              <div class="showcase-rating">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+              </div>
+    
+              <div class="price-box">
+                <p class="price">UGX {{p.price}}</p>
+                <del>UGX 0.00</del>
+              </div>
+    
+            </div>
+    
+            {% if forloop.counter|divisibleby:"3" %}
+        </div>
+    
+        <div class="row">
+    
+              <br><br><br><br><br>
+    {% endif %}
+      {% endfor %}
+    </div>
+    <!-- products data enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd -->
+    {%else%}
+    <h3 style="text-align:center; color:#3E454C;">No Search Found</h3>
+    {%endif%}
+    
+    
+        </div>
+    
+      </div>
+</div>
+
+{% endblock %}

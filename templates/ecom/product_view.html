@@ -42,7 +42,7 @@
               <del>UGX 00.00</del>
             </div>
     
-            <button class="add-cart-btn">add to cart</button>
+            <a href="{% url 'add-to-cart' selected_product.id  %}"><button class="add-cart-btn">add to cart</button></a>
     
             <div class="showcase-status">
               <div class="wrapper">
@@ -101,4 +101,64 @@
       </div>
 </div>
 </div>
+
+
+
+<!-- Your existing HTML structure -->
+
+<!-- Your existing HTML structure -->
+
+<script>
+    // Check if messages are present
+    {% if messages %}
+      // Iterate through each message
+      {% for message in messages %}
+        // Extract the product name from the message
+        var productName = '{{ message|cut:" added to cart successfully!" }}';
+  
+        // Create a new toast notification for each message
+        var toast = document.createElement('div');
+        toast.className = 'notification-toast';
+        toast.setAttribute('data-toast', '');
+  
+        var closeButton = document.createElement('button');
+        closeButton.className = 'toast-close-btn';
+        closeButton.setAttribute('data-toast-close', '');
+        closeButton.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+  
+        var toastBanner = document.createElement('div');
+        toastBanner.className = 'toast-banner';
+        toastBanner.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
+  
+        var toastDetail = document.createElement('div');
+        toastDetail.className = 'toast-detail';
+  
+        var toastMessage = document.createElement('p');
+        toastMessage.className = 'toast-message';
+        toastMessage.innerText = '{{ message }}';
+  
+        var toastTitle = document.createElement('p');
+        toastTitle.className = 'toast-title';
+        toastTitle.innerText = productName;
+  
+        var toastMeta = document.createElement('p');
+        toastMeta.className = 'toast-meta';
+        toastMeta.innerHTML = '<time datetime="PT2M">A Few Minutes</time> ago';
+  
+        // Append elements to the toast notification
+        toastDetail.appendChild(toastMessage);
+        toastDetail.appendChild(toastTitle);
+        toastDetail.appendChild(toastMeta);
+  
+        toast.appendChild(closeButton);
+        toast.appendChild(toastBanner);
+        toast.appendChild(toastDetail);
+  
+        // Append the toast notification to the document body
+        document.body.appendChild(toast);
+      {% endfor %}
+    {% endif %}
+  </script>
+  
+  
 {% endblock %}
