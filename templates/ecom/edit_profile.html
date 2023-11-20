@@ -1,60 +1,62 @@
-{% extends 'ecom/customer_base.html' %}
+{% extends 'ecom/base.html' %}
 {% load widget_tweaks %}
 {% block content %}
 
-<head>
   <style media="screen">
-    body {
-      background-color:#ffffff;
-    }
-    a:link {
-      text-decoration: none;
-    }
+     .card {
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
-    .note {
-      text-align: center;
-      height: 80px;
-      background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-      color: #fff;
-      font-weight: bold;
-      line-height: 80px;
-    }
+.form-group {
+    margin-bottom: 20px;
+}
 
-    .form-content {
-      padding: 5%;
-      border: 1px solid #ced4da;
-      margin-bottom: 2%;
-    }
+.form-control {
+    padding: 12px;
+    font-size: 16px;
+    border: none; /* Remove the default border */
+    border-bottom: 1px solid black; /* Add a bottom border */
+    background-color: transparent; /* Make the background transparent */
+}
 
-    .form-control {
-      border-radius: 1.5rem;
-    }
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 
-    .btnSubmit {
-      border: none;
-      border-radius: 1.5rem;
-      padding: 1%;
-      width: 20%;
-      cursor: pointer;
-      background: #0062cc;
-      color: #fff;
-    }
+.btn-primary {
+    background-color: grey;
+    border: 1px solid grey; /* Add a border to the button */
+    padding: 12px;
+    font-size: 16px;
+    width: 100%
+}
 
-    .menu{
-      top: 50px;
-    }
+.btn-primary:hover {
+    background-color: grey;
+    border: 1px solid grey;
+}
   </style>
 
-
-</head>
-<br><br><br><br><br><br>
 <!------ update page for doctor by admin(sumit)  ---------->
+<div class="card">
+
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <div class="container register-form">
     <div class="form">
       <div class="note">
-        <p>EDIT PROFILE</p>
+        <h3>EDIT PROFILE</h3>
       </div>
       <div class="form-content">
         <div class="row">
@@ -85,11 +87,12 @@
 
           </div>
         </div>
-        <button type="submit" class="btnSubmit">Edit</button>
+        <button type="submit" class="btnSubmit btn btn-primary btn-block">Edit</button>
       </div>
     </div>
   </div>
 </form>
+</div>
 <!--
 developed By : vernonthedev
 -->
