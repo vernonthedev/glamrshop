@@ -30,6 +30,11 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Latest version of Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+
 
 </head>
 
@@ -160,16 +165,13 @@
             </ul>
           </div>
         </nav>
-          
+        
 
-          <button class="action-btn">
-            <ion-icon name="heart-outline"></ion-icon>
-            <span class="count">0</span>
-          </button>
-
+          <a href="/cart">
           <button class="action-btn">
             <ion-icon name="bag-handle-outline"></ion-icon>
             <span class="count">{{ product_count_in_cart }}</span>
+          </a>
           </button>
 
         </div>
@@ -195,11 +197,11 @@
           </li>
 
           <li class="menu-category">
-            <a href="#" class="menu-title">About Us</a>
+            <a href="/aboutus" class="menu-title">About Us</a>
           </li>
 
           <li class="menu-category">
-            <a href="#" class="menu-title">Contact Us</a>
+            <a href="/contactus" class="menu-title">Contact Us</a>
           </li>
 
         </ul>

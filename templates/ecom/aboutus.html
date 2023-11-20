@@ -1,31 +1,132 @@
-<!DOCTYPE html>
+{% extends 'ecom/base.html'%}
 {% load static %}
-<html lang="en" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Simple E-commerce</title>
-  <style media="screen">
-    .footer{
-      position: fixed;
-    }
-  </style>
-</head>
+{% block content %}
 
-<body style="background-color:#f7f7f7;">
-  {%if request.user.is_authenticated%}
-    {% include "ecom/customer_navbar.html" %}
-  {%else%}
-    {% include "ecom/navbar.html" %}
-  {%endif%}
-  <br><br><br>
-<h3 style="text-align:center;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </h3>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  {% include "ecom/footer.html" %}
-</body>
-<!--
-developed By : vernonthedev
--->
+<style>
+  /* Add your custom styles here */
+  body {
+    background-color: #f8f9fa;
+  }
 
-</html>
+  .about-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+  }
+
+  .about-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .team-member {
+    text-align: center;
+  }
+
+  /* Add your custom styles here */
+body {
+  background-color: #f8f9fa;
+}
+
+.about-section {
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.team-member img {
+  width: 150px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+I apologize for the confusion. If you want the team member images to appear in a single line, you need to apply the flex container properties to the parent element that contains all the team members. Here's the corrected CSS:
+
+css
+Copy code
+/* Add your custom styles here */
+body {
+  background-color: #f8f9fa;
+}
+
+.about-section {
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-around; 
+  padding-bottom: 40px;
+  padding-top: 40px;/* Adjust as needed for spacing */
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-member img {
+  width: 150px; /* Adjust the width as needed */
+  height: 150px; /* Adjust the height as needed */
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+</style>
+
+
+
+<!-- About Section -->
+<section class="about-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="section-heading text-uppercase">About GlamrShop</h2>
+        <p class="text-muted">
+          Welcome to GlamrShop, your premier destination for beauty and cosmetic products. We are dedicated to providing the latest trends and high-quality products to enhance your natural beauty.
+        </p>
+        <p class="text-muted">
+          At GlamrShop, we believe that everyone deserves to feel glamorous and confident. Our curated collection includes a wide range of cosmetics, skincare, and beauty accessories to help you achieve the look you desire.
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <img class="img-fluid rounded" src="https://via.placeholder.com/400" alt="About GlamrShop">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="bg-light">
+  <div class="container">
+    <h2 class="section-heading text-uppercase text-center">Meet Our Team</h2>
+    <div class="row team-members">
+      <!-- Team Member 1 -->
+      <div class="col-lg-4 team-member">
+        <img class="rounded-circle" src="https://via.placeholder.com/150" alt="Team Member">
+        <h4 class="font-weight-bold">Mitala David</h4>
+        <p class="text-muted">Founder & CEO</p>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="col-lg-4 team-member">
+        <img class="rounded-circle" src="https://via.placeholder.com/150" alt="Team Member">
+        <h4 class="font-weight-bold">Mitala David</h4>
+        <p class="text-muted">Marketing Director</p>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="col-lg-4 team-member">
+        <img class="rounded-circle" src="https://via.placeholder.com/150" alt="Team Member">
+        <h4 class="font-weight-bold">Alice Johnson</h4>
+        <p class="text-muted">Mitala David</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
