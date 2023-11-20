@@ -1,95 +1,5 @@
-{% extends 'ecom/base.html' %}
-{% load static %}
 
-{% block content %}
-<head>
-
-</head>
-<style media="screen">
-
-  .container {
-    max-width: 600px;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  :root {
-    --primary-color: #000;
-    --white: #fff;
-    --grey: #aaa;
-  }
-
-  .panel-title {
-    display: inline;
-    font-weight: bold;
-  }
-
-  .checkbox.pull-right {
-    margin: 0;
-  }
-
-  .pl-ziro {
-    padding-left: 0px;
-  }
-
-  .panel {
-    margin-top: 30px;
-  }
-
-  .panel-heading {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 10px;
-    border-radius: 4px 4px 0 0;
-  }
-
-  .panel-body {
-    padding: 20px;
-  }
-
-  .form-control {
-    border-radius: 4px;
-  }
-
-  .input-group-addon {
-    background-color: var(--white);
-    border: none;
-    border-radius: 4px;
-  }
-
-  .nav-pills li.active a {
-    background-color: var(--primary-color);
-    color: var(--white);
-  }
-
-  .btn-success {
-    background-color: var(--black);
-    color: var(--white);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-</style>
-<br><br>
-<center><i>Just for demo purpose.[DEMO PAYMENT]</i></center>
-<br><br>
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">
-                        Payment Details
-                    </h3>
-                    <div class="checkbox pull-right">
-                        <label>
-                            <input type="checkbox" />
-                            Remember
-                        </label>
-                    </div>
-                </div>
-                <div class="panel-body">
+                <!-- <div class="panel-body">
                     <form role="form" method="post">
                     <div class="form-group">
                         <label for="cardNumber">
@@ -125,15 +35,69 @@
                         </div>
                     </div>
                     </form>
-                </div>
-            </div>
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="badge pull-right">{{ total }}</span> Final Payment</a></li>
-            </ul>
-            <br/>
-            <a href="/payment-success" class="btn btn-success btn-lg btn-block" role="button">Pay</a>
+                </div> -->
+
+{% extends 'ecom/base.html' %}
+{% load widget_tweaks %}
+
+{% load static %}
+{% block content %}
+
+<style>
+ .card {
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    padding: 12px;
+    font-size: 16px;
+    border: none; /* Remove the default border */
+    border-bottom: 1px solid black; /* Add a bottom border */
+    background-color: transparent; /* Make the background transparent */
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: grey;
+    border: 1px solid grey; /* Add a border to the button */
+    padding: 12px;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: grey;
+    border: 1px solid grey;
+}
+
+
+</style>
+
+<div class="card">
+    <h3>Payment Details</h3>
+
+        <div class="form-group">
+            <li class="active"><span class="badge pull-right"><b>UGX {{ total }}</b></span> Final Payment</li>
+            <a type="submit" class="btn btn-primary btn-block">Make Order</a>
         </div>
-    </div>
+
 </div>
 
-{% endblock content %}
+<br><br>
+{% endblock %}
