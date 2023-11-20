@@ -279,7 +279,7 @@ def search_view(request):
     word="Searched Result :"
 
     if request.user.is_authenticated:
-        return render(request,'ecom/customer_home.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
+        return render(request,'ecom/home.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
     return render(request,'ecom/searched_products.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
 
 
@@ -398,7 +398,7 @@ def customer_home_view(request):
         product_count_in_cart=len(set(counter))
     else:
         product_count_in_cart=0
-    return render(request,'ecom/customer_home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
 
 
 
