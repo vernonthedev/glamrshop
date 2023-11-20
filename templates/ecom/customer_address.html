@@ -1,4 +1,4 @@
-{% extends 'ecom/customer_base.html' %}
+{% extends 'ecom/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
@@ -88,6 +88,7 @@ select{
 	color:red;
 }
 </style>
+<h3 align="center">Checkout Info</h3>
 {%if product_in_cart%}
 <form method="post">
   {% csrf_token %}

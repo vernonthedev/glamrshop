@@ -1,78 +1,95 @@
-{% extends 'ecom/customer_base.html' %}
+{% extends 'ecom/base.html' %}
 {% load static %}
+
 {% block content %}
+<style>
 
 
-<style media="screen">
-  body {
-    background-color:#f7f7f7;
-  }
-  .button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #f4511e;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 28px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
+  :root {
+    --primary-color: #ef96b1;
+    --light-black: rgba(0, 0, 0, 0.89);
+    --black: #000;
+    --white: #fff;
+    --grey: #aaa;
   }
 
-  .button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+  .profile-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+  .profile-image {
+    flex: 1;
+    max-width: 300px;
+    margin-right: 20px;
   }
 
-  .button:hover span {
-  padding-right: 25px;
+  .profile-image img {
+    width: 100%;
+    border-radius: 5%;
   }
 
-  .button:hover span:after {
-  opacity: 1;
-  right: 0;
+  .profile-details {
+    flex: 1;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
   }
 
+  blockquote {
+    border-left: 5px solid var(--primary-color);
+    padding-left: 20px;
+    margin-bottom: 0;
+  }
+
+  .contact-info {
+    margin-top: 10px;
+  }
+
+  .edit-button {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+
+  .btn-edit {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
 
 </style>
-<br><br><br>
-<div style="padding-left:300px;" class="container">
 
-        <div class="col-sm-2 col-md-2">
-            <img src="{% static customer.profile_pic.url %}"   alt="profile pic" class="img-rounded img-responsive" />
-        </div>
-        <div class="col-sm-4 col-md-4">
-            <blockquote>
-                <p>Username: {{request.user}}</p> <small><cite title="Source Title">Address: {{customer.address}}  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
-            </blockquote>
-            <p><i class="glyphicon glyphicon-phone"></i>Contact: {{customer.mobile}}
-            </p>
-        </div>
+<div class="container">
+  <h3 align="center">Account Settings</h3>
+  <div class="profile-container">
+    <div class="profile-image">
+      <img src="{% static customer.profile_pic.url %}" alt="Profile Pic">
+    </div>
+    <div class="profile-details">
+      <blockquote>
+        <p>Username: {{ request.user }}</p>
+        <small><cite title="Source Title">Address: {{ customer.address }} <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+      </blockquote>
+      <p class="contact-info"><i class="glyphicon glyphicon-phone"></i>Contact: {{ customer.mobile }}</p>
+    </div>
+  </div>
 
+  <div class="edit-button">
+    <a href="/edit-profile" class="btn-edit"><i class="ion-edit"></i> Edit Profile</a>
+  </div>
 </div>
-<br>
-<div style="text-align: center;">
-  <a href="/edit-profile"><button class="btn btn-primary btn-lg" ><span>Edit Profile </span></button></a>
-</div>
-<br><br><br><br><br><br>
-<!--
-developed By : vernonthedev
--->
-
-
 
 {% endblock content %}
