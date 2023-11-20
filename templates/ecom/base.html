@@ -36,9 +36,27 @@
 <body>
 
 
-  <!--
-    - HEADER
-  -->
+  <style>
+    .social-icons-container {
+  display: flex;
+  align-items: center; /* Optional: Align items vertically in the center */
+}
+
+.footer-nav-link {
+  margin-right: 10px; /* Adjust as needed for spacing between icons */
+}
+
+.newsletter-form {
+  display: flex;
+  align-items: center; /* Align items vertically in the center */
+}
+
+.email-field {
+  margin-right: 10px; /* Adjust as needed for spacing between input and button */
+}
+
+
+  </style>
 
   <header>
 
@@ -686,71 +704,50 @@
         <ul class="footer-nav-list">
 
           <li class="footer-nav-item">
-            <h2 class="nav-title">Popular Categories</h2>
+            <h2 class="nav-title">Follow Us On Social Media</h2>
           </li>
-
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Fashion</a>
+            <a href="#" class="footer-nav-link">
+              Get social with @glamrshop<br>
+              Be in the loop about our<br>
+              new launches, how-to videos, <br>
+              and share your posts with us! <br>
+              #glamrshop
+            </a>
           </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Electronic</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Cosmetic</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Health</a>
-          </li>
-
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Watches</a>
-          </li>
+          <div class="social-icons-container">
+            <a href="#" class="footer-nav-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+            <a href="#" class="footer-nav-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+            <a href="#" class="footer-nav-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+            <a href="#" class="footer-nav-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </div>
+          
+          
 
         </ul>
+
+        
 
         <ul class="footer-nav-list">
         
           <li class="footer-nav-item">
-            <h2 class="nav-title">Products</h2>
+            <h2 class="nav-title">Customer Service</h2>
           </li>
         
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Prices drop</a>
+            <a href="#" class="footer-nav-link">Shipping Policy</a>
           </li>
         
           <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">New products</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Best sales</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Contact us</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Sitemap</a>
-          </li>
-        
-        </ul>
-
-        <ul class="footer-nav-list">
-        
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Our Company</h2>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Delivery</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Legal Notice</a>
+            <a href="#" class="footer-nav-link">Privacy Policy</a>
           </li>
         
           <li class="footer-nav-item">
@@ -767,65 +764,24 @@
         
         </ul>
 
-        <ul class="footer-nav-list">
-        
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Services</h2>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Prices drop</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">New products</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Best sales</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Contact us</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">Sitemap</a>
-          </li>
-        
-        </ul>
+  
 
         <ul class="footer-nav-list">
-
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Contact</h2>
-          </li>
-
-          <li class="footer-nav-item flex">
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <address class="content">
-              Kampala
-              Uganda
-            </address>
-          </li>
-
-          <li class="footer-nav-item flex">
-            <div class="icon-box">
-              <ion-icon name="call-outline"></ion-icon>
-            </div>
-
-            <a href="tel:+0000000000" class="footer-nav-link">(+256) 0000-000-000</a>
-          </li>
-
-          <li class="footer-nav-item flex">
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-
-            <a href="mailto:glamrshop@gmail.com" class="footer-nav-link">glamrshop@gmail.com</a>
+          <li>
+            <form action="#">
+              <div class="newsletter-header">
+                <h3 class="newsletter-title" style="color: aliceblue;">Subscribe Newsletter.</h3>
+                <p class="newsletter-desc">
+                  Subscribe to <b>Glamrshop</b> and receive updates, access to exclusive deals, and more.
+                </p>
+              </div>
+            
+              <div class="newsletter-form">
+                <input type="email" name="email" class="email-field" placeholder="Email Address" required>
+                <button type="submit" class="btn-newsletter">Subscribe</button>
+              </div>
+            </form>
+            
           </li>
 
         </ul>
@@ -865,6 +821,7 @@
 
             </ul>
           </li>
+         
 
         </ul>
 
