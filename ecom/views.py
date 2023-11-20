@@ -264,6 +264,21 @@ def view_feedback_view(request):
 #---------------------------------------------------------------------------------
 #------------------------ PUBLIC CUSTOMER RELATED VIEWS START ---------------------
 #---------------------------------------------------------------------------------
+def shop_view(request):
+    products=models.Product.objects.all()
+    
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter=product_ids.split('|')
+        product_count_in_cart=len(set(counter))
+    else:
+        product_count_in_cart=0
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('afterlogin')
+    return render(request,'ecom/shop.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+
+
+
 def search_view(request):
     # whatever user write in search box we get in query
     query = request.GET['query']
@@ -279,7 +294,7 @@ def search_view(request):
     word="Searched Result :"
 
     if request.user.is_authenticated:
-        return render(request,'ecom/home.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
+        return render(request,'ecom/searched_products.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
     return render(request,'ecom/searched_products.html',{'products':products,'word':word,'product_count_in_cart':product_count_in_cart})
 
 
@@ -398,7 +413,7 @@ def customer_home_view(request):
         product_count_in_cart=len(set(counter))
     else:
         product_count_in_cart=0
-    return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/shop.html',{'products':products,'product_count_in_cart':product_count_in_cart})
 
 
 

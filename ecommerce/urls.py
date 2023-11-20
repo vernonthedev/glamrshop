@@ -14,6 +14,7 @@ urlpatterns = [
     path('',views.home_view,name=''),
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
     path('logout', LogoutView.as_view(template_name='ecom/home.html'),name='logout'),
+    path('shop', views.shop_view, name='shop'),
     path('aboutus', views.aboutus_view, name='aboutus'),
     path('contactus', views.contactus_view,name='contactus'),
     path('search', views.search_view,name='search'),

@@ -40,6 +40,9 @@ class Orders(models.Model):
     order_date= models.DateField(auto_now_add=True,null=True)
     status=models.CharField(max_length=50,null=True,choices=STATUS)
 
+    def __str__(self):
+        return f"Order by #{self.customer} is {self.status}"
+
 
 class Feedback(models.Model):
     name=models.CharField(max_length=40)
