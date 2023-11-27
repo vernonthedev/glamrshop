@@ -58,8 +58,8 @@ class ProductForm(forms.ModelForm):
             'number_in_stock': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Number in Stock'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
             'short_description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Short Description'}),
-            'long_description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Long Description'}),
-            'images': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),  # Update widget for images
+            'long_description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Long Description'}),
+            'images': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),  # Update widget for image
         }
 
 #address of shipment
