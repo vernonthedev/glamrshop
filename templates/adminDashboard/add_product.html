@@ -9,6 +9,13 @@
   }
 </style>
 
+<!-- Add these links in the head section of your HTML file -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/dist/css/fileinput.min.css">
+<script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/dist/js/plugins/piexif.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/dist/js/fileinput.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/dist/js/locales/LANG.js"></script>
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Add New Product</h6>
@@ -33,6 +40,14 @@
                         <label for="">Long Description*</label>
                         {% render_field productForm.long_description class="form-control" placeholder="Long Description" %}
                       </div>
+                      <div class="form-group">
+                        <label for="">Category*</label>
+                        {% render_field productForm.category class="form-control" placeholder="Category" %}
+                      </div>
+                      <div class="form-group">
+                        <label for="">Sub Category*</label>
+                        {% render_field productForm.subcategory class="form-control" placeholder="Sub Category" %}
+                      </div>
           
                     </div>
                     <div class="col-md-6">
@@ -56,13 +71,18 @@
                       </div>
    
                         <div class="form-group">
-                          <label for="">Product Price (UGX)*</label>
-                          {% render_field productForm.price class="form-control" placeholder="0" %}
+                          <label for="">Selling Price (UGX)*</label>
+                          {% render_field productForm.selling_price class="form-control" placeholder="0" %}
                         </div>
-                        <!-- <div class="form-group">
-                          <label for="">Product Image</label>
-                          {% render_field productForm.images class="form-control" placeholder="product_image" %}
-                        </div> -->
+                        <div class="form-group">
+                          <label for="">Discount Price (UGX)*</label>
+                          {% render_field productForm.discount_price class="form-control" placeholder="0" %}
+                        </div>
+
+                        <div class="form-group">
+                          <label for="">Product Images*</label>
+                          <input type="file" name="images" id="productImages" class="file-input" multiple>
+                      </div>
               
                       
           
@@ -82,5 +102,25 @@
           </form>
     </div>
 </div>
+
+
+
+<script>
+  $(document).ready(function () {
+      // Initialize the file input plugin
+      $("#productImages").fileinput({
+          theme: 'fas',
+          showUpload: false, // Hide the upload button if you don't need it
+          showRemove: false, // Hide the remove button if you don't need it
+          allowedFileTypes: ['image'],
+          browseClass: 'btn btn-primary',
+          browseLabel: 'Select Images',
+          browseIcon: '<i class="fas fa-images"></i>',
+          previewFileType: 'image',
+          initialPreviewAsData: true,
+          initialPreview: [], // You can set initial preview images if needed
+      });
+  });
+</script>
 
 {% endblock %}

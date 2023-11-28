@@ -33,12 +33,12 @@ class ImageInline(admin.TabularInline):
     extra = 3  # Number of empty image slots to display
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'inventory')  # Customize the list display as needed
+    list_display = ('name', 'category', 'selling_price', 'discount_price','inventory')  # Customize the list display as needed
     list_filter = ('category', 'subcategory', 'featured', 'deal_of_the_day', 'best_seller', 'new_arrival', 'trending', 'top_rated')
     search_fields = ('name', 'description', 'short_description', 'long_description')
 
     fieldsets = [
-        ('Product Information', {'fields': ['name', 'category', 'subcategory', 'price']}),
+        ('Product Information', {'fields': ['name', 'category', 'subcategory', 'selling_price','discount_price']}),
         ('Flags', {'fields': ['featured', 'deal_of_the_day', 'best_seller', 'new_arrival', 'trending', 'top_rated']}),
         ('Stock Information', {'fields': ['inventory', 'number_in_stock']}),
         ('Descriptions', {'fields': ['short_description', 'long_description']}),

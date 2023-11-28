@@ -19,19 +19,51 @@
                         {% render_field productForm.name class="form-control" placeholder="Product Name" %}
                       </div>
                       <div class="form-group">
-                        <label for="">Product Description</label>
-                        {% render_field productForm.description class="form-control" placeholder="Description" %}
+                        <label for="">Short Description</label>
+                        {% render_field productForm.short_description class="form-control" placeholder="Short Description" %}
+                      </div>
+                      <div class="form-group">
+                        <label for="">Long Description</label>
+                        {% render_field productForm.long_description class="form-control" placeholder="Long Description" %}
+                      </div>
+                      <div class="form-group">
+                        <label for="">Category</label>
+                        {% render_field productForm.category class="form-control" placeholder="Category" %}
+                      </div>
+                      <div class="form-group">
+                        <label for="">Sub Category</label>
+                        {% render_field productForm.subcategory class="form-control" placeholder="Sub category" %}
                       </div>
           
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="">Product Price (UGX)</label>
-                        {% render_field productForm.price class="form-control" placeholder="0" %}
+                        <label for="">Is Featured*</label>
+                        {% render_field productForm.featured class="form-control" placeholder="" %}
+                        <label for="">Deal of the day*</label>
+                        {% render_field productForm.deal_of_the_day class="form-control" placeholder="" %}
+                        <label for="">Is Best Seller*</label>
+                        {% render_field productForm.best_seller class="form-control" placeholder="" %}
+                        <label for="">Is New Arrival*</label>
+                        {% render_field productForm.new_arrival class="form-control" placeholder="" %}
+                        <label for="">Is Trending*</label>
+                        {% render_field productForm.trending class="form-control" placeholder="" %}
+                        <label for="">Is Top Rated*</label>
+                        {% render_field productForm.top_rated class="form-control" placeholder="" %}
+                        <label for="">Inventory*</label>
+                        {% render_field productForm.inventory class="form-control" placeholder="" %}
+                        <label for="">Stock Number*</label>
+                        {% render_field productForm.number_in_stock class="form-control" placeholder="" %}
                       </div>
-                      <div class="form-group">
-                        <label for="">Product Image</label>
-                        {% render_field productForm.product_image class="form-control" placeholder="product_image" %}
+   
+                        <div class="form-group">
+                          <label for="">Product Price (UGX)*</label>
+                          {% render_field productForm.price class="form-control" placeholder="0" %}
+                        </div>
+
+                        <div class="form-group">
+                          <label for="">Product Images*</label>
+                          <input type="file" name="images" id="productImages" class="file-input" multiple>
                       </div>
           
           

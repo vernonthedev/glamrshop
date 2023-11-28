@@ -351,7 +351,7 @@ def cart_view(request):
 
             #for total price shown in cart
             for p in products:
-                total=total+p.price
+                total=total+p.selling_price
     return render(request,'ecom/cart.html',{'products':products,'total':total,'product_count_in_cart':product_count_in_cart})
 
 
@@ -374,7 +374,7 @@ def remove_from_cart_view(request,pk):
         products=models.Product.objects.all().filter(id__in = product_id_in_cart)
         #for total price shown in cart after removing product
         for p in products:
-            total=total+p.price
+            total=total+p.selling_price
 
         #  for update coookie value after removing product id in cart
         value=""
@@ -453,7 +453,7 @@ def customer_address_view(request):
                     product_id_in_cart=product_ids.split('|')
                     products=models.Product.objects.all().filter(id__in = product_id_in_cart)
                     for p in products:
-                        total=total+p.price
+                        total=total+p.selling_price
 
             response = render(request, 'ecom/payment.html',{'total':total})
             response.set_cookie('email',email)
@@ -574,7 +574,7 @@ def download_invoice_view(request,orderID,productID):
 
         'productName':product.name,
         'productImage':product.product_image,
-        'productPrice':product.price,
+        'productPrice':product.selling_price,
         'productDescription':product.description,
 
 

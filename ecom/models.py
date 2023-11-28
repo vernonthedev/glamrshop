@@ -43,7 +43,8 @@ class Product(models.Model):
     top_rated = models.BooleanField(default=False)
     inventory = models.PositiveIntegerField(default=0)
     number_in_stock = models.PositiveIntegerField(default=0)
-    price = models.PositiveIntegerField()
+    selling_price = models.PositiveIntegerField(default=0)
+    discount_price = models.PositiveIntegerField(default=0)
     short_description = models.CharField(max_length=40, default="")
     long_description = models.TextField(max_length=1000, default="")
     images = models.ManyToManyField(Image, blank=True, related_name='product_images')
@@ -65,15 +66,6 @@ class Customer(models.Model):
         return self.user.id
     def __str__(self):
         return self.user.first_name
-
-
-# class Product(models.Model):
-#     name=models.CharField(max_length=40)
-#     product_image= models.ImageField(upload_to='product_image/',null=True,blank=True)
-#     price = models.PositiveIntegerField()
-#     description=models.CharField(max_length=40)
-#     def __str__(self):
-#         return self.name
 
 
 class Orders(models.Model):

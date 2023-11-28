@@ -42,7 +42,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        fields = ['name', 'category', 'subcategory', 'featured', 'deal_of_the_day', 'best_seller', 'new_arrival', 'trending', 'top_rated', 'inventory', 'number_in_stock', 'price', 'short_description', 'long_description', 'images']
+        fields = ['name', 'category', 'subcategory', 'featured', 'deal_of_the_day', 'best_seller', 'new_arrival', 'trending', 'top_rated', 'inventory', 'number_in_stock', 'selling_price','discount_price', 'short_description', 'long_description', 'images']
         
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Product Name'}),
@@ -56,7 +56,8 @@ class ProductForm(forms.ModelForm):
             'top_rated': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'inventory': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Inventory'}),
             'number_in_stock': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Number in Stock'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Price'}),
+            'selling_price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Selling Price'}),
+            'discount_price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Siscount Price'}),
             'short_description': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Short Description'}),
             'long_description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Long Description'}),
             'images': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input'}),  # Update widget for image

@@ -1,164 +1,184 @@
-{% extends 'ecom/base.html'%}
+
+
+
+
+
+{% extends 'ecom/base.html' %}
 {% load static %}
 
 {% block content %}
-
-
 <div class="container col-md-8">
     <div class="product-featured">
-
-       
         {% if selected_product %}
-        <h2 class="title">Selected Product:</h2>
-        <div class="showcase-container">
-
-        <div class="showcase">
-          
-          <div class="showcase-banner">
-            <img src="{% static selected_product.product_image.url %}" alt="shampoo, conditioner & facewash packs" class="showcase-img">
-          </div>
-    
-          <div class="showcase-content">
+            <h2 class="title">Selected Product:</h2>
+            <div class="showcase-container">
+                <div class="showcase">
+                    <div class="slick-carousel">
+                        {% for image in selected_product.images.image.all %}
+                            <div class="showcase-banner">
+                                <img src="{{ image.url }}" alt="{{ selected_product.name }}" class="showcase-img">
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Rest of your existing code for product details -->
+                    <div class="showcase-content">
             
-            <div class="showcase-rating">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star-outline"></ion-icon>
-              <ion-icon name="star-outline"></ion-icon>
-            </div>
-    
-            <a href="#">
-              <h3 class="showcase-title">{{ selected_product.name }}</h3>
-            </a>
-    
-            <p class="showcase-desc">
-                {{ selected_product.description }}
-            </p>
-    
-            <div class="price-box">
-              <p class="price">UGX {{ selected_product.price }}</p>
-    
-              <del>UGX 00.00</del>
-            </div>
-    
-            <a href="{% url 'add-to-cart' selected_product.id  %}"><button class="add-cart-btn">add to cart</button></a>
-    
-            <div class="showcase-status">
-              <div class="wrapper">
-                <p>
-                  already sold: <b>20</b>
-                </p>
-    
-                <p>
-                  available: <b>40</b>
-                </p>
-              </div>
-    
-              <div class="showcase-status-bar"></div>
-            </div>
-    
-            <div class="countdown-box">
-    
-              <p class="countdown-desc">
-                Hurry Up! Offer ends in:
-              </p>
-    
-              <div class="countdown">
-    
-                <div class="countdown-content">
-    
-                  <p class="display-number">360</p>
-    
-                  <p class="display-text">Days</p>
-    
+                      <div class="showcase-rating">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                      </div>
+                      
+          
+                        <h3 class="showcase-title">{{ selected_product.name }}</h3>
+          
+                        <p class="showcase-desc">
+                          <blockquote>{{ selected_product.category }}</blockquote>
+                        </p>
+                      <p class="showcase-desc">
+                          <strong>{{ selected_product.short_description }}</strong>
+                      </p>
+                      <p class="showcase-desc">UGX {{ selected_product.long_description }}</p>
+              
+                      <div class="price-box">
+                        <p class="price">UGX {{ selected_product.selling_price }}</p>
+          
+                        
+              
+                        <del>UGX {{ selected_product.discount_price }}</del>
+                      </div>
+              
+                      <a href="{% url 'add-to-cart' selected_product.id  %}"><button class="add-cart-btn">add to cart</button></a>
+              
+                      <div class="showcase-status">
+                        <div class="wrapper">
+                          <p>
+                            already sold: <b>20</b>
+                          </p>
+              
+                          <p>
+                            available: <b>40</b>
+                          </p>
+                        </div>
+              
+                        <div class="showcase-status-bar"></div>
+                      </div>
+              
+                      <div class="countdown-box">
+              
+                        <p class="countdown-desc">
+                          Hurry Up! Offer ends in:
+                        </p>
+              
+                        <div class="countdown">
+              
+                          <div class="countdown-content">
+              
+                            <p class="display-number">360</p>
+              
+                            <p class="display-text">Days</p>
+              
+                          </div>
+              
+                          <div class="countdown-content">
+                            <p class="display-number">24</p>
+                            <p class="display-text">Hours</p>
+                          </div>
+              
+                          <div class="countdown-content">
+                            <p class="display-number">59</p>
+                            <p class="display-text">Min</p>
+                          </div>
+              
+                          <div class="countdown-content">
+                            <p class="display-number">00</p>
+                            <p class="display-text">Sec</p>
+                          </div>
+              
+                        </div>
+              
+                      </div>
+              
+                    </div>
                 </div>
-    
-                <div class="countdown-content">
-                  <p class="display-number">24</p>
-                  <p class="display-text">Hours</p>
-                </div>
-    
-                <div class="countdown-content">
-                  <p class="display-number">59</p>
-                  <p class="display-text">Min</p>
-                </div>
-    
-                <div class="countdown-content">
-                  <p class="display-number">00</p>
-                  <p class="display-text">Sec</p>
-                </div>
-    
-              </div>
-    
             </div>
-    
-          </div>
-    
-        </div>
         {% endif %}
-    
-      </div>
-</div>
+    </div>
 </div>
 
+<!-- Add Slick Carousel files -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-
-<!-- Your existing HTML structure -->
-
-<!-- Your existing HTML structure -->
+<!-- Initialize Slick Carousel -->
+<script>
+    $(document).ready(function(){
+        $('.slick-carousel').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            // Add more options as needed
+        });
+    });
+</script>
 
 <script>
-    // Check if messages are present
-    {% if messages %}
-      // Iterate through each message
-      {% for message in messages %}
-        // Extract the product name from the message
-        var productName = '{{ message|cut:" added to cart successfully!" }}';
-  
-        // Create a new toast notification for each message
-        var toast = document.createElement('div');
-        toast.className = 'notification-toast';
-        toast.setAttribute('data-toast', '');
-  
-        var closeButton = document.createElement('button');
-        closeButton.className = 'toast-close-btn';
-        closeButton.setAttribute('data-toast-close', '');
-        closeButton.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
-  
-        var toastBanner = document.createElement('div');
-        toastBanner.className = 'toast-banner';
-        toastBanner.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
-  
-        var toastDetail = document.createElement('div');
-        toastDetail.className = 'toast-detail';
-  
-        var toastMessage = document.createElement('p');
-        toastMessage.className = 'toast-message';
-        toastMessage.innerText = '{{ message }}';
-  
-        var toastTitle = document.createElement('p');
-        toastTitle.className = 'toast-title';
-        toastTitle.innerText = productName;
-  
-        var toastMeta = document.createElement('p');
-        toastMeta.className = 'toast-meta';
-        toastMeta.innerHTML = '<time datetime="PT2M">A Few Minutes</time> ago';
-  
-        // Append elements to the toast notification
-        toastDetail.appendChild(toastMessage);
-        toastDetail.appendChild(toastTitle);
-        toastDetail.appendChild(toastMeta);
-  
-        toast.appendChild(closeButton);
-        toast.appendChild(toastBanner);
-        toast.appendChild(toastDetail);
-  
-        // Append the toast notification to the document body
-        document.body.appendChild(toast);
-      {% endfor %}
-    {% endif %}
-  </script>
-  
-  
+  // Check if messages are present
+  {% if messages %}
+    // Iterate through each message
+    {% for message in messages %}
+      // Extract the product name from the message
+      var productName = '{{ message|cut:" added to cart successfully!" }}';
+
+      // Create a new toast notification for each message
+      var toast = document.createElement('div');
+      toast.className = 'notification-toast';
+      toast.setAttribute('data-toast', '');
+
+      var closeButton = document.createElement('button');
+      closeButton.className = 'toast-close-btn';
+      closeButton.setAttribute('data-toast-close', '');
+      closeButton.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+
+      var toastBanner = document.createElement('div');
+      toastBanner.className = 'toast-banner';
+      toastBanner.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
+
+      var toastDetail = document.createElement('div');
+      toastDetail.className = 'toast-detail';
+
+      var toastMessage = document.createElement('p');
+      toastMessage.className = 'toast-message';
+      toastMessage.innerText = '{{ message }}';
+
+      var toastTitle = document.createElement('p');
+      toastTitle.className = 'toast-title';
+      toastTitle.innerText = productName;
+
+      var toastMeta = document.createElement('p');
+      toastMeta.className = 'toast-meta';
+      toastMeta.innerHTML = '<time datetime="PT2M">A Few Minutes</time> ago';
+
+      // Append elements to the toast notification
+      toastDetail.appendChild(toastMessage);
+      toastDetail.appendChild(toastTitle);
+      toastDetail.appendChild(toastMeta);
+
+      toast.appendChild(closeButton);
+      toast.appendChild(toastBanner);
+      toast.appendChild(toastDetail);
+
+      // Append the toast notification to the document body
+      document.body.appendChild(toast);
+    {% endfor %}
+  {% endif %}
+</script>
+
+
 {% endblock %}
