@@ -19,6 +19,10 @@ urlpatterns = [
     path('contactus', views.contactus_view,name='contactus'),
     path('search', views.search_view,name='search'),
     path('send-feedback', views.send_feedback_view,name='send-feedback'),
+    path('shipping-policy', views.shipping_policy_view, name='shipping-policy'),
+    path('privacy-policy', views.privacy_policy_view, name='privacy-policy'),
+    path('terms-and-conditions', views.terms_and_conditions_view, name='terms-and-conditions'),
+
 
     ######################### ADMIN URLS
     path('adminclick', views.adminclick_view),
