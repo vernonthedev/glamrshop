@@ -28,8 +28,8 @@
   }
 
   .panel-heading {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: transparent;
+    color: var(--black);
     padding: 10px;
     border-radius: 4px 4px 0 0;
     text-align: center;
@@ -48,8 +48,8 @@
   }
 
   th {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: transparent;
+    color: var(--black);
   }
 
   td img {
@@ -64,9 +64,9 @@
   }
 
   .btn-danger, .btn-success {
-    padding: 15px 30px;
+    padding: 5px 10px;
     font-size: 1.2em;
-    margin: 0 10px;
+    margin: 0 5px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -78,8 +78,9 @@
   }
 
   .btn-success {
-    background-color: var(--primary-color);
-    color: var(--white);
+    background-color: transparent;
+    color: var(--black);
+    border: 1px solid black;
   }
 
   @media (max-width: 768px) {
@@ -109,8 +110,8 @@
             <tr>
               <td>{{ p.name }}</td>
               <td><img src="{% static p.product_image.url %}" alt="Product Image"></td>
-              <td>${{ p.price }}</td>
-              <td>{{ p.description }}</td>
+              <td>UGX {{ p.selling_price }}</td>
+              <td>{{ p.short_description }}</td>
               <td><a class="btn btn-danger" href="{% url 'remove-from-cart' p.id %}">Remove</a></td>
             </tr>
           {% else %}
@@ -126,7 +127,7 @@
   </div>
 
   <div class="btn-container" style="display: flex; justify-content: space-between;">
-    <button class="btn btn-danger">Total ${{ total }}</button>
+    <button class="btn btn-danger">Total UGX {{ total }}</button>
     <a href="/customer-address" style="text-decoration: none;">
       <button class="btn btn-success">Purchase</button>
     </a>
