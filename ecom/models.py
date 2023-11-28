@@ -93,3 +93,10 @@ class Feedback(models.Model):
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return self.name
+
+
+# Data model for the subscriptions made through the footer
+class Subscriber(models.Model):
+    email=models.EmailField(max_length=50,null=True)
+    def __str__(self):
+        return f"New Subscription from: {self.email}"

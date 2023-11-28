@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Customer,Product,Orders,Feedback, Image, Category, SubCategory
+from .models import Customer,Product,Orders,Feedback, Image, Category, SubCategory, Subscriber
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
     class Meta:
@@ -63,4 +63,11 @@ class FeedbackAdmin(admin.ModelAdmin):
     def __str__(self):
         return f"{self.name}"
 admin.site.register(Feedback, FeedbackAdmin)
-# Register your models here.
+
+class SubscriberAdmin(admin.ModelAdmin):
+    class Meta:
+        verbose_name = "Subscriber"
+        verbose_name_plural = "Subscribers"
+    def __str__(self):
+        return f"{self.email}"
+admin.site.register(Subscriber, SubscriberAdmin)
