@@ -1,898 +1,359 @@
-{% extends 'ecom/base.html'%}
+{% extends 'ecom/base.html' %}
 {% load static %}
 
 {% block content %}
+ 
+ <!-- main content -->
+  <div class="main-content">
+    <div class="wrap-banner">
 
-<div class="overlay" data-overlay></div>
 
-<!--
-  - MODAL
--->
+<!-- menu category -->
+<div class="container position">
+  <div class="section menu-banner d-xs-none">
+      <div class="tiva-verticalmenu block">
+          <div class="box-content">
+              <div class="verticalmenu" role="navigation">
+                  <ul class="menu level1">
 
-<!-- <div class="modal" data-modal>
+                      {% for category in categories %}
+                          <li class="item parent group">
+                              <a href="#" class="hasicon" title="FI">
+                                  <i class="bi bi-shop-window"></i> {{ category.name }}
+                              </a>
+                              {% if category.subcategory_set.all %}
+                                  <div class="dropdown-menu menu-2">
+                                      <div class="menu-items">
+                                          {% for subcategory in category.subcategory_set.all %}
+                                              <div class="item">
+                                                  <div class="menu-content">
+                                                      <div class="tags">
+                                                          <ul class="list-inline">
+                                                              <li class="list-inline-item">
+                                                                  <a href="#">{{ subcategory.name }}</a>
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          {% endfor %}
+                                      </div>
+                                  </div>
+                              {% endif %}
+                          </li>
+                      {% endfor %}
 
-  <div class="modal-close-overlay" data-modal-overlay></div>
-
-  <div class="modal-content">
-
-    <button class="modal-close-btn" data-modal-close>
-      <ion-icon name="close-outline"></ion-icon>
-    </button>
-
-    <div class="newsletter-img">
-      <img src="{% static '/assets/images/newsletter.png'%}" alt="subscribe newsletter" width="400" height="400">
-    </div>
-
-    <div class="newsletter">
-
-      <form action="#">
-
-        <div class="newsletter-header">
-
-          <h3 class="newsletter-title">Subscribe Newsletter.</h3>
-
-          <p class="newsletter-desc">
-            Subscribe the <b>Veikebeauty</b> to get latest products and discount update.
-          </p>
-
-        </div>
-
-        <input type="email" name="email" class="email-field" placeholder="Email Address" required>
-
-        <button type="submit" class="btn-newsletter">Subscribe</button>
-
-      </form>
-
-    </div>
-
+                  </ul>
+              </div>
+          </div>
+      </div>
   </div>
+</div>
 
-</div> -->
 
 
+<style>
+  .nivoSlider{
+    height: 90vh;
+  }
+</style>
 
-  <!--
-    - MAIN
-  -->
 
-  <main>
-
-    <!--
-      - BANNER
-    -->
-
-    <div class="banner">
-
-      <div class="container">
-
-        <div class="slider-container has-scrollbar">
-
-          <div class="slider-item">
-
-            <img src="{%static '/images/banner.png'%}" alt="women's latest fashion sale" class="banner-img">
-
-            <div class="banner-content">
-
-
-              <a href="#" class="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
-
-          <div class="slider-item">
-
-            <img src="{%static '/assets/images/banner-2.jpg'%}" alt="modern sunglasses" class="banner-img">
-
-            <div class="banner-content">
-
-              <p class="banner-subtitle">Trending accessories</p>
-
-              <h2 class="banner-title">Modern sunglasses</h2>
-
-              <p class="banner-text">
-                starting at &dollar; <b>15</b>.00
-              </p>
-
-              <a href="#" class="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
-
-          <div class="slider-item">
-
-            <img src="{%static '/assets/images/banner-3.jpg'%}" alt="new fashion summer sale" class="banner-img">
-
-            <div class="banner-content">
-
-              <p class="banner-subtitle">Sale Offer</p>
-
-              <h2 class="banner-title">New fashion summer sale</h2>
-
-              <p class="banner-text">
-                starting at &dollar; <b>29</b>.99
-              </p>
-
-              <a href="#" class="banner-btn">Shop now</a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-
-
-    <!--
-      - PRODUCT
-    -->
-
-    <div class="product-container">
-
-      <div class="container">
-
-
-        <!--
-          - SIDEBAR
-        -->
-
-        <div class="sidebar  has-scrollbar" data-mobile-menu>
-
-          <div class="sidebar-category">
-
-            <div class="sidebar-top">
-              <h2 class="sidebar-title">Category</h2>
-
-              <button class="sidebar-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-            </div>
-
-            <ul class="sidebar-menu-category-list">
-
-              <li class="sidebar-menu-category">
-
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-
-                  <div class="menu-title-flex">
-                    <img src="{%static '/assets/images/icons/dress.svg'%}" alt="clothes" width="20" height="20"
-                      class="menu-title-img">
-
-                    <p class="menu-title">Clothes</p>
-                  </div>
-
-                  <div>
-                    <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                    <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                  </div>
-
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-
-                  <li class="sidebar-submenu-category">
-                    <a href="#" class="sidebar-submenu-title">
-                      <p class="product-name">Shirt</p>
-                      <data value="300" class="stock" title="Available Stock">300</data>
-                    </a>
-                  </li>
-
-                  <li class="sidebar-submenu-category">
-                    <a href="#" class="sidebar-submenu-title">
-                      <p class="product-name">shorts & jeans</p>
-                      <data value="60" class="stock" title="Available Stock">60</data>
-                    </a>
-                  </li>
-
-                  <li class="sidebar-submenu-category">
-                    <a href="#" class="sidebar-submenu-title">
-                      <p class="product-name">jacket</p>
-                      <data value="50" class="stock" title="Available Stock">50</data>
-                    </a>
-                  </li>
-
-                  <li class="sidebar-submenu-category">
-                    <a href="#" class="sidebar-submenu-title">
-                      <p class="product-name">dress & frock</p>
-                      <data value="87" class="stock" title="Available Stock">87</data>
-                    </a>
-                  </li>
-
-                </ul>
-
-              </li>
-            </ul>
-
-          </div>
-
-          <div class="product-showcase">
-
-            <h3 class="showcase-heading">best sellers</h3>
-
-            <div class="showcase-wrapper">
-
-              <div class="showcase-container">
-
-                <div class="showcase">
-
-                  <a href="#" class="showcase-img-box">
-                    <img src="{%static '/assets/images/products/1.jpg'%}" alt="baby fabric shoes" width="75" height="75"
-                      class="showcase-img">
-                  </a>
-
-                  <div class="showcase-content">
-
+        <!-- slide show -->
+        <div class="section banner myban">
+            <div class="tiva-slideshow-wrapper">
+                <div id="tiva-slideshow" class="nivoSlider">
                     <a href="#">
-                      <h4 class="showcase-title">baby fabric shoes</h4>
+                        <img class="img-responsive" src="{% static 'banner-images/banner.jpg'%}" title="#caption1" alt="Veike online beauty shop image">
                     </a>
-
-                    <div class="showcase-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                    </div>
-
-                    <div class="price-box">
-                      <del>$5.00</del>
-                      <p class="price">$4.00</p>
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="product-box">
-
-          <!--
-            - PRODUCT MINIMAL
-          -->
-
-          <div class="product-minimal">
-
-            <div class="product-showcase">
-
-              <h2 class="title">New Arrivals</h2>
-
-              <div class="showcase-wrapper has-scrollbar">
-
-                <div class="showcase-container">
-
-                  <div class="showcase">
-
-                    <a href="#" class="showcase-img-box">
-                      <img src="{%static '/assets/images/products/clothes-1.jpg'%}" alt="relaxed short full sleeve t-shirt" width="70" class="showcase-img">
-                    </a>
-
-                    <div class="showcase-content">
-
-                      <a href="#">
-                        <h4 class="showcase-title">Relaxed Short full Sleeve T-Shirt</h4>
-                      </a>
-
-                      <a href="#" class="showcase-category">Clothes</a>
-
-                      <div class="price-box">
-                        <p class="price">$45.00</p>
-                        <del>$12.00</del>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-                <div class="showcase-container">
-                
-                  <div class="showcase">
-                
-                    <a href="#" class="showcase-img-box">
-                      <img src="{%static '/assets/images/products/jacket-1.jpg'%}" alt="men yarn fleece full-zip jacket" class="showcase-img"
-                        width="70">
-                    </a>
-                
-                    <div class="showcase-content">
-                
-                      <a href="#">
-                        <h4 class="showcase-title">MEN Yarn Fleece Full-Zip Jacket</h4>
-                      </a>
-                
-                      <a href="#" class="showcase-category">Winter wear</a>
-                
-                      <div class="price-box">
-                        <p class="price">$61.00</p>
-                        <del>$11.00</del>
-                      </div>
-                
-                    </div>
-                
-                  </div>
-                
-                
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="product-showcase">
-            
-              <h2 class="title">Trending</h2>
-            
-              <div class="showcase-wrapper  has-scrollbar">
-            
-                <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="{%static '/assets/images/products/sports-1.jpg'%}" alt="running & trekking shoes - white" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Running & Trekking Shoes - White</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Sports</a>
-            
-                      <div class="price-box">
-                        <p class="price">$49.00</p>
-                        <del>$15.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-
-                </div>
-            
-                <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="{% static '/assets/images/products/sports-6.jpg'%}" alt="air tekking shoes - white" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Air Trekking Shoes - white</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Sports</a>
-            
-                      <div class="price-box">
-                        <p class="price">$52.00</p>
-                        <del>$55.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                </div>
-            
-              </div>
-            
-            </div>
-
-            <div class="product-showcase">
-            
-              <h2 class="title">Top Rated</h2>
-            
-              <div class="showcase-wrapper  has-scrollbar">
-            
-                <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="{%static '/assets/images/products/watch-3.jpg'%}" alt="pocket watch leather pouch" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">Pocket Watch Leather Pouch</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">Watches</a>
-            
-                      <div class="price-box">
-                        <p class="price">$50.00</p>
-                        <del>$34.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-                </div>
-            
-                <div class="showcase-container">
-            
-                  <div class="showcase">
-            
-                    <a href="#" class="showcase-img-box">
-                      <img src="{%static '/assets/images/products/jewellery-2.jpg'%}" alt="platinum zircon classic ring" class="showcase-img"
-                        width="70">
-                    </a>
-            
-                    <div class="showcase-content">
-            
-                      <a href="#">
-                        <h4 class="showcase-title">platinum Zircon Classic Ring</h4>
-                      </a>
-            
-                      <a href="#" class="showcase-category">jewellery</a>
-            
-                      <div class="price-box">
-                        <p class="price">$62.00</p>
-                        <del>$65.00</del>
-                      </div>
-            
-                    </div>
-            
-                  </div>
-            
-                </div>
-            
-              </div>
-            
-            </div>
-
-          </div>
-
-
-
-          <!--
-            - PRODUCT FEATURED
-          -->
-
-          <div class="product-featured">
-
-            <h2 class="title">Deal of the day</h2>
-
-            <div class="showcase-wrapper has-scrollbar">
-
-              <div class="showcase-container">
-
-                <div class="showcase">
-                  
-                  <div class="showcase-banner">
-                    <img src="{%static '/assets/images/products/shampoo.jpg'%}" alt="shampoo, conditioner & facewash packs" class="showcase-img">
-                  </div>
-
-                  <div class="showcase-content">
-                    
-                    <div class="showcase-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                    </div>
-
                     <a href="#">
-                      <h3 class="showcase-title">shampoo, conditioner & facewash packs</h3>
+                        <img class="img-responsive" src="{% static 'banner-images/beauty2.jpg'%}" title="#caption2" alt="Veike online beauty shop image">
                     </a>
-
-                    <p class="showcase-desc">
-                      Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                      dolor dolor sit amet consectetur Lorem ipsum dolor
-                    </p>
-
-                    <div class="price-box">
-                      <p class="price">$150.00</p>
-
-                      <del>$200.00</del>
-                    </div>
-
-                    <button class="add-cart-btn">add to cart</button>
-
-                    <div class="showcase-status">
-                      <div class="wrapper">
-                        <p>
-                          already sold: <b>20</b>
-                        </p>
-
-                        <p>
-                          available: <b>40</b>
-                        </p>
-                      </div>
-
-                      <div class="showcase-status-bar"></div>
-                    </div>
-
-                    <div class="countdown-box">
-
-                      <p class="countdown-desc">
-                        Hurry Up! Offer ends in:
-                      </p>
-
-                      <div class="countdown">
-
-                        <div class="countdown-content">
-
-                          <p class="display-number">360</p>
-
-                          <p class="display-text">Days</p>
-
-                        </div>
-
-                        <div class="countdown-content">
-                          <p class="display-number">24</p>
-                          <p class="display-text">Hours</p>
-                        </div>
-
-                        <div class="countdown-content">
-                          <p class="display-number">59</p>
-                          <p class="display-text">Min</p>
-                        </div>
-
-                        <div class="countdown-content">
-                          <p class="display-number">00</p>
-                          <p class="display-text">Sec</p>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="showcase-container">
-              
-                <div class="showcase">
-              
-                  <div class="showcase-banner">
-                    <img src="{%static '/assets/images/products/jewellery-1.jpg'%}" alt="Rose Gold diamonds Earring" class="showcase-img">
-                  </div>
-              
-                  <div class="showcase-content">
-              
-                    <div class="showcase-rating">
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                      <ion-icon name="star-outline"></ion-icon>
-                    </div>
-              
-                    <h3 class="showcase-title">
-                      <a href="#" class="showcase-title">Rose Gold diamonds Earring</a>
-                    </h3>
-              
-                    <p class="showcase-desc">
-                      Lorem ipsum dolor sit amet consectetur Lorem ipsum
-                      dolor dolor sit amet consectetur Lorem ipsum dolor
-                    </p>
-              
-                    <div class="price-box">
-                      <p class="price">$1990.00</p>
-                      <del>$2000.00</del>
-                    </div>
-              
-                    <button class="add-cart-btn">add to cart</button>
-              
-                    <div class="showcase-status">
-                      <div class="wrapper">
-                        <p> already sold: <b>15</b> </p>
-              
-                        <p> available: <b>40</b> </p>
-                      </div>
-              
-                      <div class="showcase-status-bar"></div>
-                    </div>
-              
-                    <div class="countdown-box">
-              
-                      <p class="countdown-desc">Hurry Up! Offer ends in:</p>
-              
-                      <div class="countdown">
-                        <div class="countdown-content">
-                          <p class="display-number">360</p>
-                          <p class="display-text">Days</p>
-                        </div>
-              
-                        <div class="countdown-content">
-                          <p class="display-number">24</p>
-                          <p class="display-text">Hours</p>
-                        </div>
-              
-                        <div class="countdown-content">
-                          <p class="display-number">59</p>
-                          <p class="display-text">Min</p>
-                        </div>
-              
-                        <div class="countdown-content">
-                          <p class="display-number">00</p>
-                          <p class="display-text">Sec</p>
-                        </div>
-                      </div>
-              
-                    </div>
-              
-                  </div>
-              
-                </div>
-              
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <!--
-            - PRODUCT GRID
-          -->
-
-          <div class="product-main">
-
-            <h2 class="title">Featured Products</h2>
-
-            <div class="product-grid">
-              
-              {% for p in products %}
-              <div class="showcase">
-
-                <div class="showcase-banner">
-                  <a href="{% url 'selected_product' p.id %}">
-                  <img src="{% static p.product_image.url %}" alt="Mens Winter Leathers Jackets" width="300" class="product-img default">
-                </a>
-                <a href="{% url 'selected_product' p.id %}">
-                  <img src="{% static p.product_image.url %}" alt="Mens Winter Leathers Jackets" width="300" class="product-img hover">
-                  </a>
-                  <p class="showcase-badge">15%</p>
-
-                  <div class="showcase-actions">
-
-                    <button class="btn-action">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn-action">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn-action">
-                      <ion-icon name="repeat-outline"></ion-icon>
-                    </button>
-
-                    <button class="btn-action">
-                      <ion-icon name="bag-add-outline"></ion-icon>
-                    </button>
-
-                  </div>
-
-                </div>
-
-                <div class="showcase-content">
-
-                  <a href="#" class="showcase-category">{{p.name}}</a>
-
+                    <a href="#">
+                        <img class="img-responsive" src="{% static 'banner-images/banner1.jpg'%}" title="#caption3" alt="Veike online beauty shop image">
+                    </a>
                   <a href="#">
-                    <h3 class="showcase-title">{{p.description}}</h3>
-                  </a>
-
-                  <div class="showcase-rating">
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                    <ion-icon name="star-outline"></ion-icon>
-                  </div>
-
-                  <div class="price-box">
-                    <p class="price">UGX {{p.price}}</p>
-                    <del>UGX 0.00</del>
-                  </div>
-
+                    <img class="img-responsive" src="{% static 'banner-images/banner3.jpg'%}" title="#caption3" alt="Veike online beauty shop image">
+                </a>
+                <a href="#">
+                  <img class="img-responsive" src="{% static 'banner-images/banner4.jpg'%}" title="#caption3" alt="Veike online beauty shop image">
+              </a>
                 </div>
+            </div>
+        </div>
+    </div>
 
-              </div>
+
+
+    <!-- main -->
+    <div id="wrapper-site">
+        <div id="content-wrapper" class="full-width">
+            <div id="main">
+                <section class="page-home">
+                    <div class="container">
+
+                        <!-- delivery form -->
+                        <div class="section policy-home col-lg-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="block">
+                                        <div class="block-content">
+                                            <div class="policy-item">
+                                                <div class="policy-content iconpolicy1">
+                                                    <img src="{% static 'assets/img/home/home1-policy.png'%}" alt="img">
+                                                    <div class="policy-name mb-5">FREE DELIVERY FROM UGX 500,000</div>
+                                                    <div class="policy-des">Make your order and we will deliver</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tiva-html col-lg-4 col-md-4">
+                                    <div class="block">
+                                        <div class="block-content">
+                                            <div class="policy-item">
+                                                <div class="policy-content iconpolicy2">
+                                                    <img src="{% static 'assets/img/home/home1-policy2.png'%}" alt="img">
+                                                    <div class="policy-name mb-5">WHOLESALE POLICY</div>
+                                                    <div class="policy-des">We also do wholesale procurement</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tiva-html col-lg-4 col-md-4">
+                                    <div class="block">
+                                        <div class="block-content">
+                                            <div class="policy-item">
+                                                <div class="policy-content iconpolicy3">
+                                                    <img src="{% static 'assets/img/home/home1-policy3.png'%}" alt="img">
+                                                    <div class="policy-name mb-5">MONEY BACK GUARANTEED</div>
+                                                    <div class="policy-des">Refunds available for damaged products</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- product living room -->
+                    <div class="section living-room">
+                        <div class="container">
+                            <div class="tiva-row-wrap row">
+                                <div class="groupcategoriestab-vertical col-md-12 col-xs-12">
+                                    <div class="grouptab row">
+                                        <div class="categoriestab-right col-lg-3 align-items-start d-flex flex-column col-md-3 flex-3">
+                                            <div class="block-title-content">
+                                                <h2 class="title-block">
+                                                    Shop Products
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="categoriestab-left product-tab col-md-9 flex-9">
+                                            <div class="title-tab-content d-flex justify-content-start">
+                                                <ul class="nav nav-tabs">
+                                                  <li>
+                                                    <a href="#sale" data-toggle="tab">Deal of the</a>
+                                                </li>
+                                                    <li>
+                                                        <a href="#new" data-toggle="tab" class="active">New Arrivals</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#best" data-toggle="tab">Best Sellers</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#sale" data-toggle="tab">Special Products</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div id="new" class="tab-pane fade in active show">
+                                                  
+                                                    <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
+                                                      {% if products %}
+                                                      {% for product in products %}
+                                                        <div class="item text-center">
+                                                            <div class="product-miniature first-item js-product-miniature item-one">
+                                                                <div class="thumbnail-container">
+                                                                  <a href="#">
+                
+                                                                    {% if product.product_images.first %}
+                                                                    <img class="img-fluid image-cover" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
+                                                                {% else %}
+                                                                    <!-- Provide a default image or leave it empty based on your design -->
+                                                                    <img class="img-fluid image-cover" src="{% static 'default.jpg' %}" alt="{{ product.name }}">
+                                                                {% endif %}
+
+                                                                
+                                                                </a>
+                                                                    <div class="product-flags discount">-10%</div>
+                                                                </div>
+                                                                <div class="product-description">
+                                                                    <div class="product-groups">
+                                                                        <div class="product-title">
+                                                                            <a href="#">{{ product.name }}</a>
+                                                                        </div>
+                                                                        <div class="rating">
+                                                                            <div class="star-content">
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                                <div class="star"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product-group-price">
+                                                                            <div class="product-price-and-shipping">
+                                                                                <span class="price">UGX {{ product.selling_price }}</span>
+                                                                                <del class="regular-price">UGX {{ product.discount_price }}</del>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="product-buttons d-flex justify-content-center">
+                                                                        <form action="#" method="post" class="formAddToCart">
+                                                                            <a class="add-to-cart" href="#" data-button-action="add-to-cart">
+                                                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                            </a>
+                                                                        </form>
+                                                                        <a class="addToWishlist" href="#" data-rel="1" onclick="">
+                                                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                        </a>
+                                                                        <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
+                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                      {% else %}
+                                                      <p>No Products Available</p>
+                                                      {% endif %}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <!-- banner -->
+                        <div class="section spacing-10 group-image-special col-lg-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="effect">
+                                        <a href="#">
+                                            <img class="img-fluid" src="{% static 'banner-images/banner4.jpg'%}" alt="banner-1" title="banner-1">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="effect">
+                                        <a href="#">
+                                            <img class="img-fluid" src="{% static 'banner-images/banner3.jpg'%}" alt="banner-2" title="banner-2">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- best seller -->
+                        <div class="section best-sellers col-lg-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-xs-12">
+                                    <div class="groupproductlist">
+                                        <div class="row d-flex align-items-center">
+                                            <!-- column 4 -->
+                                            <div class="flex-4 col-lg-4 flex-4">
+                                                <h2 class="title-block">
+                                                    <span class="sub-title">Best sellers Products</span>Best Sellers
+                                                </h2>
+                                                <div class="content-text">
+                                                    <p> All the best products ever made and sold at veike beauty supplies at your service
+                                                    </p>
+                                                    <div>
+                                                        <a href="{% url 'shop'%}"> View all products </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                           <!-- column 8 -->
+<div class="block-content col-lg-8 flex-8">
+  <div class="tab-content">
+      <div class="tab-pane fade in active show">
+          <div class="category-product-index owl-carousel owl-theme owl-loaded owl-drag">
+              {% for product in products %}
+                  <div class="item text-center">
+                      <div class="product-miniature js-product-miniature item-one first-item">
+                          <div class="thumbnail-container">
+                              <a href="#">
+                                {% if product.product_images.first %}
+                                      <img class="img-fluid image-cover" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
+                                      <!-- You can use product.images.first.image_secondary.url for the secondary image if available -->
+                                  {% else %}
+                                      <!-- Provide a default image or leave it empty based on your design -->
+                                      <img class="img-fluid image-cover" src="{% static 'default.jpg' %}" alt="{{ product.name }}">
+                                  {% endif %}
+                              </a>
+                              <div class="highlighted-informations">
+                                  <div class="variant-links">
+                                      <!-- Your variant links -->
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="product-description">
+                              <div class="product-groups">
+                                  <div class="product-title">
+                                      <a href="#">{{ product.name }}</a>
+                                  </div>
+                                  <div class="product-group-price">
+                                      <div class="product-price-and-shipping">
+                                          <span class="price">{{ product.selling_price }}</span>
+                                          {% if product.discount_price %}
+                                              <del class="regular-price">{{ product.discount_price }}</del>
+                                          {% endif %}
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="product-buttons d-flex justify-content-center">
+                                  <form action="#" method="post" class="formAddToCart">
+                                      <input type="hidden" name="id_product" value="{{ product.pk }}">
+                                      <a class="add-to-cart" href="#" data-button-action="add-to-cart">
+                                          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                      </a>
+                                  </form>
+                                  <a class="addToWishlist" href="#" data-rel="{{ product.pk }}" onclick="">
+                                      <i class="fa fa-heart" aria-hidden="true"></i>
+                                  </a>
+                                  <a href="#" class="quick-view hidden-sm-down" data-link-action="quickview">
+                                      <i class="fa fa-eye" aria-hidden="true"></i>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               {% endfor %}
-
-            </div>
-
           </div>
-
-        </div>
-
       </div>
+  </div>
+</div>
 
-    </div>
-
-
-
-
-
-    <!--
-      - TESTIMONIALS, CTA & SERVICE
-    -->
-
-    <div>
-
-      <div class="container">
-
-        <div class="testimonials-box">
-
-          <!--
-            - TESTIMONIALS
-          -->
-
-          <div class="testimonial">
-
-            <h2 class="title">testimonial</h2>
-
-            <div class="testimonial-card">
-
-              <img src="{%static '/images/instagram.png'%}" alt="alan doe" class="testimonial-banner" width="80" height="80">
-
-              <p class="testimonial-name">Veikebeauty</p>
-
-              <p class="testimonial-title">Best Beauty Store</p>
-
-              <img src="{%static '/assets/images/icons/quotes.svg'%}" alt="quotation" class="quotation-img" width="26">
-
-              <p class="testimonial-desc">
-                Follow Us And Share Your Stories With Us!
-              </p>
-
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-
-          </div>
-
-
-
-          <!--
-            - CTA
-          -->
-
-          <div class="cta-container">
-
-            <img src="{% static '/images/makeup.jpg'%}" alt="summer collection" class="cta-banner">
-
-            <a href="#" class="cta-content">
-
-              <p class="discount">10% Discount</p>
-
-              <h2 class="cta-title">Best collection</h2>
-
-              <p class="cta-text">Starting this December</p>
-
-              <button class="cta-btn">Shop now</button>
-
-            </a>
-
-          </div>
-
-
-
-          <!--
-            - SERVICE
-          -->
-
-          <div class="service">
-
-            <h2 class="title">Our Services</h2>
-
-            <div class="service-container">
-
-              <a href="#" class="service-item">
-
-                <div class="service-icon">
-                  <ion-icon name="boat-outline"></ion-icon>
-                </div>
-
-                <div class="service-content">
-
-                  <h3 class="service-title">Worldwide Delivery</h3>
-                  <p class="service-desc">For Order Over $100</p>
-
-                </div>
-
-              </a>
-
-              <a href="#" class="service-item">
-              
-                <div class="service-icon">
-                  <ion-icon name="rocket-outline"></ion-icon>
-                </div>
-              
-                <div class="service-content">
-              
-                  <h3 class="service-title">Next Day delivery</h3>
-                  <p class="service-desc">UK Orders Only</p>
-              
-                </div>
-              
-              </a>
-
-              <a href="#" class="service-item">
-              
-                <div class="service-icon">
-                  <ion-icon name="call-outline"></ion-icon>
-                </div>
-              
-                <div class="service-content">
-              
-                  <h3 class="service-title">Best Online Support</h3>
-                  <p class="service-desc">Hours: 8AM - 11PM</p>
-              
-                </div>
-              
-              </a>
-
-              <a href="#" class="service-item">
-              
-                <div class="service-icon">
-                  <ion-icon name="arrow-undo-outline"></ion-icon>
-                </div>
-              
-                <div class="service-content">
-              
-                  <h3 class="service-title">Return Policy</h3>
-                  <p class="service-desc">Easy & Free Return</p>
-              
-                </div>
-              
-              </a>
-
-              <a href="#" class="service-item">
-              
-                <div class="service-icon">
-                  <ion-icon name="ticket-outline"></ion-icon>
-                </div>
-              
-                <div class="service-content">
-              
-                  <h3 class="service-title">30% money back</h3>
-                  <p class="service-desc">For Order Over $100</p>
-              
-                </div>
-              
-              </a>
-
-            </div>
-
-          </div>
-
         </div>
-
-      </div>
-
     </div>
-
-  </main>
+</div>
 
 {% endblock %}

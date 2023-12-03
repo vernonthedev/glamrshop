@@ -1,0 +1,201 @@
+{% load static %}
+
+<header>
+    <!-- header left mobie -->
+    <div class="header-mobile d-md-none">
+        <div class="mobile hidden-md-up text-xs-center d-flex align-items-center justify-content-around">
+
+            <!-- menu left -->
+            <div id="mobile_mainmenu" class="item-mobile-top">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+
+            <!-- logo -->
+            <div class="mobile-logo">
+                <a href="{% url '' %}">
+                    <span>VeikeBeauty</span>
+                </a>
+            </div>
+
+            <!-- menu right -->
+            <div class="mobile-menutop" data-target="#mobile-pagemenu">
+                <i class="zmdi zmdi-more"></i>
+            </div>
+        </div>
+
+        <!-- search -->
+        <div id="mobile_search" class="d-flex">
+            <div id="mobile_search_content">
+                <form method="get" action="{% url 'search' %}">
+                    <input type="text" name="query" placeholder="Search beauty products">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="desktop_cart">
+                <div class="blockcart block-cart cart-preview tiva-toggle">
+                    <div class="header-cart tiva-toggle-btn">
+                        <span class="cart-products-count">{{ product_count_in_cart }}</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <div class="dropdown-content">
+                        <div class="cart-content">
+                            <table>
+                                <tbody>
+                                    <tr class="total">
+                                        <td colspan="2">Total:</td>
+                                        <td>UGX 0</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" class="d-flex justify-content-center">
+                                            <div class="cart-button">
+                                                <a href="{% url 'cart' %}" title="View Cart">View Cart</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- header desktop -->
+    <div class="header-top d-xs-none ">
+        <div class="container">
+            <div class="row">
+                <!-- logo -->
+                <div class="col-sm-2 col-md-2 d-flex align-items-center">
+                    <div id="logo">
+                        <a href="/">
+                           <h4>VeikeBeauty</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- menu -->
+                <div class="main-menu col-sm-4 col-md-5 align-items-center justify-content-center navbar-expand-md">
+                    <div class="menu navbar collapse navbar-collapse">
+                        <ul class="menu-top navbar-nav">
+                            <li class="nav-link">
+                                <a href="{% url '' %}" class="parent">Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'shop' %}" class="parent">Shop</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'aboutus' %}" class="parent">About</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'contactus' %}" class="parent">Contact US</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- search-->
+                <div id="search_widget" class="col-sm-6 col-md-5 align-items-center justify-content-end d-flex">
+                    <form method="get" action="{% url 'search' %}">
+                        <input type="text" name="query"  placeholder="Search beauty products..." class="ui-autocomplete-input" autocomplete="off">
+                        <button type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+
+                    <!-- Account Details -->
+                    <div class="desktop_cart">
+                        <div class="blockcart block-cart cart-preview tiva-toggle">
+                            <div class="myaccount-title">
+                                <a href="#acount" data-toggle="collapse" class="acount">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span>Account</span>
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="dropdown-content">
+                                <div class="cart-content">
+                                    <div class="account-list-content">
+                                        {%if request.user.is_authenticated%}
+                                            <div>
+                                                <a class="login" href="{% url 'my-profile' %}" rel="nofollow" title="View your customer profile">
+                                                    <i class="fa fa-cog"></i>
+                                                    <span class="display-5">My Profile</span>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a class="login" href="{% url 'my-order' %}" rel="nofollow" title="Track your orders">
+                                                    <i class="fa fa-cog"></i>
+                                                    <span class="display-5">Track My Orders</span>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a class="login" href="{% url 'logout' %}" rel="nofollow" title="Log Out">
+                                                    <i class="fa fa-cog"></i>
+                                                    <span class="display-5">Logout</span>
+                                                </a>
+                                            </div>
+
+                                        {% else %}
+                                            <div>
+                                                <a class="login" href="{% url 'customerlogin' %}" rel="nofollow" title="Log in to your customer account">
+                                                    <i class="fa fa-sign-in"></i>
+                                                    <span class="display-5">Sign in</span>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <a class="register" href="{% url 'customersignup' %}" rel="nofollow" title="Register Account">
+                                                    <i class="fa fa-user"></i>
+                                                    <span class="display-5">Register Account</span>
+                                                </a>
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="desktop_cart">
+                        <div class="blockcart block-cart cart-preview tiva-toggle">
+                            <div class="header-cart tiva-toggle-btn">
+                                <span class="cart-products-count">{{ product_count_in_cart }}</span>
+                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            </div>
+                            <div class="dropdown-content">
+                                <div class="cart-content">
+                                    <table>
+                                        <tbody>
+                                            <tr class="total">
+                                                <td colspan="2">Total:</td>
+                                                <td>UGX 0</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="3" class="d-flex justify-content-center">
+                                                    <div class="cart-button">
+                                                        <a href="{% url 'cart' %}" title="View Cart">View Cart</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

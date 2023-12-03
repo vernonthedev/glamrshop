@@ -1,8 +1,4 @@
 
-
-
-
-
 {% extends 'ecom/base.html' %}
 {% load static %}
 
@@ -13,13 +9,13 @@
             <h2 class="title">Selected Product:</h2>
             <div class="showcase-container">
                 <div class="showcase">
-                    <div class="slick-carousel">
-                        {% for image in selected_product.images.image.all %}
-                            <div class="showcase-banner">
-                                <img src="{{ image.url }}" alt="{{ selected_product.name }}" class="showcase-img">
-                            </div>
-                        {% endfor %}
-                    </div>
+                  <!-- <div class="slick-carousel"> -->
+                    {% for image in selected_product.product_images.all %}
+                        <div class="showcase-banner">
+                            <img src="/media/{{ MEDIA_URL }}{{ image.image }}" alt="{{ selected_product.name }}" class="showcase-img">
+                        </div>
+                    {% endfor %}
+                <!-- </div> -->
                     <!-- Rest of your existing code for product details -->
                     <div class="showcase-content">
             

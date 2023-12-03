@@ -1,257 +1,83 @@
 {% load static %}
+{% load widget_tweaks %}
 
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>veikebeauty</title>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Veike Beauty | Supplies</title>
 
-  <!--
-    - favicon
-  -->
-  <link rel="shortcut icon" href="{% static ''%}" type="image/x-icon">
+    <meta name="keywords" content="Veike, Beauty shop, beauty supplies">
+    <meta name="description" content="Veike Beauty Supplies shop">
+    <meta name="author" content="tivatheme">
 
-  <!--
-    - custom css link
-  -->
-  <link rel="stylesheet" href="{% static '/assets/css/style-prefix.css'%}">
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!--
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
 
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'assets/libs/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/libs/font-awesome/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/libs/font-material/css/material-design-iconic-font.min.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/libs/nivo-slider/css/nivo-slider.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/libs/nivo-slider/css/animate.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/libs/nivo-slider/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/libs/owl-carousel/assets/owl.carousel.min.css'%}">
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Template CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/reponsive.css'%}">
 
-    <!-- Latest version of Popper.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 </head>
 
-<body>
+<body id="home">
 
+  {% include 'ecom/main/header.html'%}
+    
 
-  <style>
-    .social-icons-container {
-  display: flex;
-  align-items: center; /* Optional: Align items vertically in the center */
-}
+  {% block content %}
+  {% endblock %}
 
-.footer-nav-link {
-  margin-right: 10px; /* Adjust as needed for spacing between icons */
-}
+  {% include 'ecom/main/footer.html'%}
 
-.newsletter-form {
-  display: flex;
-  align-items: center; /* Align items vertically in the center */
-}
-
-.email-field {
-  margin-right: 10px; /* Adjust as needed for spacing between input and button */
-}
-
-
-  </style>
-
-
-
-{%if request.user.is_authenticated%}
-    {% include "ecom/auth_customer.html" %}
-  {%else%}
-  {% include "ecom/unauth_customer.html" %}
-  {%endif%}
-
- 
-
-
-
-
-{% block content %}
-
-{% endblock %}
-
-
-
-
-
-  <!--
-    - FOOTER
-  -->
-
-  <footer>
-
-
-    <div class="footer-nav">
-
-      <div class="container">
-
-        <ul class="footer-nav-list">
-
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Follow Us On Social Media</h2>
-          </li>
-          <li class="footer-nav-item">
-            <a href="#" class="footer-nav-link">
-              Get social with @Veikebeauty<br>
-              Be in the loop about our<br>
-              new launches, how-to videos, <br>
-              and share your posts with us! <br>
-              #Veikebeauty
-            </a>
-          </li>
-          <div class="social-icons-container">
-            <a href="#" class="footer-nav-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-            <a href="#" class="footer-nav-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-            <a href="#" class="footer-nav-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-            <a href="#" class="footer-nav-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </div>
-          
-          
-
-        </ul>
-
-        
-
-        <ul class="footer-nav-list">
-        
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Customer Service</h2>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="/shipping-policy" class="footer-nav-link">Shipping Policy</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="/privacy-policy" class="footer-nav-link">Privacy Policy</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="/terms-and-conditions" class="footer-nav-link">Terms and conditions</a>
-          </li>
-        
-          <li class="footer-nav-item">
-            <a href="/aboutus" class="footer-nav-link">About us</a>
-          </li>
-
-        
-        </ul>
-
-  
-
-        <ul class="footer-nav-list">
-          <li>
-            <form action="#">
-              <div class="newsletter-header">
-                <h3 class="newsletter-title" style="color: aliceblue;">Subscribe Newsletter.</h3>
-                <p class="newsletter-desc">
-                  Subscribe to <b>Veikebeauty</b> and receive updates, access to exclusive deals, and more.
-                </p>
-              </div>
-            
-              <div class="newsletter-form">
-                <input type="email" name="email" class="email-field" placeholder="Email Address" required>
-                <button type="submit" class="btn-newsletter">Subscribe</button>
-              </div>
-            </form>
-            
-          </li>
-
-        </ul>
-
-        <ul class="footer-nav-list">
-
-          <li class="footer-nav-item">
-            <h2 class="nav-title">Follow Us</h2>
-          </li>
-
-          <li>
-            <ul class="social-link">
-
-              <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
-                  <ion-icon name="logo-facebook"></ion-icon>
-                </a>
-              </li>
-
-              <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
-                  <ion-icon name="logo-twitter"></ion-icon>
-                </a>
-              </li>
-
-              <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
-                  <ion-icon name="logo-linkedin"></ion-icon>
-                </a>
-              </li>
-
-              <li class="footer-nav-item">
-                <a href="#" class="footer-nav-link">
-                  <ion-icon name="logo-instagram"></ion-icon>
-                </a>
-              </li>
-
-            </ul>
-          </li>
-         
-
-        </ul>
-
-      </div>
-
+    <!-- back top top -->
+    <div class="back-to-top">
+        <a href="#">
+            <i class="fa fa-long-arrow-up"></i>
+        </a>
     </div>
 
-    <div class="footer-bottom">
+    {% include 'ecom/main/menu_mobile_left.html'%}
 
-      <div class="container">
+    {% include 'ecom/main/menu_mobile_right.html'%}
 
-        <img src="{% static '/assets/images/payment.png'%}" alt="payment method" class="payment-img">
-
-        <p class="copyright">
-          Copyright &copy; <a href="#">Veikebeauty</a> all rights reserved.
-        </p>
-
-      </div>
-
+    <!-- Page Loader -->
+    <div id="page-preloader">
+        <div class="page-loading">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
     </div>
+    <!-- Vendor JS -->
+    <script src="{% static 'assets/libs/jquery/jquery.min.js'%}"></script>
+    <script src="{% static 'assets/libs/popper/popper.min.js'%}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js'%}libs/"></script>
+    <script src="{% static 'assets/libs/nivo-slider/js/jquery.nivo.slider.js'%}"></script>
+    <script src="{% static 'assets/libs/owl-carousel/owl.carousel.min.js'%}"></script>
 
-  </footer>
-
-
-
-
-
-
-  <!--
-    - custom js link
-  -->
-  <script src="{% static '/assets/js/script.js'%}"></script>
-
-  <!--
-    - ionicon link
-  -->
-
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <!-- Template JS -->
+    <script src="{% static 'assets/js/theme.js'%}"></script>
 </body>
+
+
 
 </html>

@@ -19,6 +19,7 @@ class CustomLoginView(LoginView):
 
 def home_view(request):
     products=models.Product.objects.all()
+    categories = models.Category.objects.all()
     
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
@@ -28,7 +29,7 @@ def home_view(request):
         product_count_in_cart=0
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart, 'categories':categories})
 
 
 def view_product(request, product_id=None):
