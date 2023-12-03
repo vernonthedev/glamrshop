@@ -27,7 +27,7 @@
         <div id="mobile_search" class="d-flex">
             <div id="mobile_search_content">
                 <form method="get" action="{% url 'search' %}">
-                    <input type="text" name="query" placeholder="Search beauty products">
+                    <input type="text" name="query" placeholder="Search beauty products" required>
                     <button type="submit">
                         <i class="fa fa-search"></i>
                     </button>
@@ -101,8 +101,8 @@
 
                 <!-- search-->
                 <div id="search_widget" class="col-sm-6 col-md-5 align-items-center justify-content-end d-flex">
-                    <form method="get" action="{% url 'search' %}">
-                        <input type="text" name="query"  placeholder="Search beauty products..." class="ui-autocomplete-input" autocomplete="off">
+                    <form method="get" action="/search">
+                        <input type="text" name="query"  placeholder="Search beauty products..." class="ui-autocomplete-input" autocomplete="off" required>
                         <button type="submit">
                             <i class="fa fa-search"></i>
                         </button>
