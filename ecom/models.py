@@ -19,17 +19,19 @@ class SubCategory(models.Model):
 
     def __str__(self):
         return self.name
-class Image(models.Model):
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='product_images')
-    image = models.ImageField(upload_to='product_images/', null=True, blank=True, max_length=255)
-
-    def __str__(self):
-        return f"Image for {self.product.name}"
 
 def get_image_upload_path(instance, filename):
     # Generate a unique folder path for each product
     product_folder = f"product_{instance.product.id}"
     return os.path.join(product_folder, filename)
+
+class Image(models.Model):
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='product_images')
+    image = models.ImageField(upload_to=get_image_upload_path, null=True, blank=True, max_length=255)
+
+    def __str__(self):
+        return f"Image for {self.product.name}"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=40)

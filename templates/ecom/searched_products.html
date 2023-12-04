@@ -174,7 +174,7 @@
                                       <div class="item text-center col-md-4">
                                           <div class="product-miniature js-product-miniature item-one first-item">
                                               <div class="thumbnail-container border">
-                                                  <a href="#">
+                                                  <a href="{% url 'selected_product' product_id=product.id %}">
                                                     {% if product.product_images.first %}
                                                     <img class="img-fluid image-cover" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
                                                     <!-- You can use product.images.first.image_secondary.url for the secondary image if available -->

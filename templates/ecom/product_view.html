@@ -3,178 +3,404 @@
 {% load static %}
 
 {% block content %}
-<div class="container col-md-8">
-    <div class="product-featured">
-        {% if selected_product %}
-            <h2 class="title">Selected Product:</h2>
-            <div class="showcase-container">
-                <div class="showcase">
-                  <!-- <div class="slick-carousel"> -->
-                    {% for image in selected_product.product_images.all %}
-                        <div class="showcase-banner">
-                            <img src="/media/{{ MEDIA_URL }}{{ image.image }}" alt="{{ selected_product.name }}" class="showcase-img">
-                        </div>
-                    {% endfor %}
-                <!-- </div> -->
-                    <!-- Rest of your existing code for product details -->
-                    <div class="showcase-content">
-            
-                      <div class="showcase-rating">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                      </div>
+<br><br><br><br><br>
+    <!-- main content -->
+    {% if selected_product %}
+    <div class="main-content">
+      <div id="wrapper-site">
+          <div id="content-wrapper">
+              <div id="main">
+                  <div class="page-home">
+
+                      <!-- breadcrumb -->
+                      <nav class="breadcrumb-bg">
+                          <div class="container no-index">
+                              <div class="breadcrumb">
+                                  <ol>
+                                      <li>
+                                          <a href="#">
+                                              <span>Home</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <span>{{selected_product.category.name}}</span>
+                                          </a>
+                                      </li>
+                                      <li>
+                                          <a href="#">
+                                              <span>{{selected_product.name}}</span>
+                                          </a>
+                                      </li>
+                                  </ol>
+                              </div>
+                          </div>
+                      </nav>
+                      <div class="container">
+                          <div class="content">
+                              <div class="row">
+                                  <div class="sidebar-3 sidebar-collection col-lg-3 col-md-3 col-sm-4">
+                                    <!-- category panel section -->
+                                  </div>
+                                  
+                                  <div class="col-sm-8 col-lg-9 col-md-9">
+                                      <div class="main-product-detail">
+                                          <h2>{{ selected_product.name }}</h2>
+                                          <div class="product-single row">
+                                              <div class="product-detail col-xs-12 col-md-5 col-sm-5">
+                                                  <div class="page-content" id="content">            
+                                                      <div class="images-container">
+                                                          <div class="js-qv-mask mask tab-content border">
+                                                              <div id="item1" class="tab-pane fade active in show">
+                                                                <div id="item1" class="tab-pane fade active in show">
+                                                                  {% if selected_product.product_images.exists %}
+                                                                      {% with first_image=selected_product.product_images.first %}                                                                          
+                                                                          <img src="/media/{{ first_image.image }}" alt="{{ selected_product.name }}" width="100%">
+                                                                      {% endwith %}
+                                                                  {% else %}
+                                                                   <!-- DEFAULT IMAGE -->
+                                                                      <img src="{% static 'default.jpg' %}" alt="{{ selected_product.name }}" width="60px">
+                                                                  {% endif %}
+                                                              </div>
+                                                              </div>
+                                                             
+                                                              <div id="item2" class="tab-pane fade">
+                                                                {% if selected_product.product_images.exists %}
+                                                                      {% with first_image=selected_product.product_images.first %}                                                                          
+                                                                          <img src="/media/{{ first_image.image }}" alt="{{ selected_product.name }}" width="100%">
+                                                                      {% endwith %}
+                                                                  {% else %}
+                                                                   <!-- DEFAULT IMAGE -->
+                                                                      <img src="{% static 'default.jpg' %}" alt="{{ selected_product.name }}" width="60px">
+                                                                  {% endif %}
+                                                              </div>
+                                                           
+                                                              <div class="layer hidden-sm-down" data-toggle="modal" data-target="#product-modal">
+                                                                  <i class="fa fa-expand"></i>
+                                                              </div>
+                                                          </div>
+                                                          <ul class="product-tab nav nav-tabs d-flex">
+                                                            {% for image in selected_product.product_images.all%}
+                                                              <li class=" col">
+                                                                  <a href="#item1" data-toggle="tab" aria-expanded="true" class="active show">
+                                                                    <img src="/media/{{ MEDIA_URL }}{{ image.image }}" alt="{{ selected_product.name }}" width="60px" height="60px">
+                                                                  </a>
+                                                              </li>
+                                                              {% endfor %}
+                                                              
+                                                          </ul>
+                                                          <div class="modal fade" id="product-modal" role="dialog">
+                                                              <div class="modal-dialog">
+
+                                                                  <!-- Modal content-->
+                                                                  <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                          <div class="modal-body">
+                                                                              <div class="product-detail">
+                                                                                  <div>
+                                                                                      <div class="images-container">
+                                                                                          <div class="js-qv-mask mask tab-content">
+                                                                                              <div id="modal-item1" class="tab-pane fade active in show">
+                                                                                                {% if selected_product.product_images.exists %}
+                                                                                                {% with first_image=selected_product.product_images.first %}                                                                          
+                                                                                                    <img src="/media/{{ first_image.image }}" alt="{{ selected_product.name }}" width="100%">
+                                                                                                {% endwith %}
+                                                                                            {% else %}
+                                                                                             <!-- DEFAULT IMAGE -->
+                                                                                                <img src="{% static 'default.jpg' %}" alt="{{ selected_product.name }}" width="60px">
+                                                                                            {% endif %}
+                                                                                              </div>
+
+                                                                                              <div id="modal-item2" class="tab-pane fade">
+                                                                                                  <img src="img/product/2.jpg" alt="img">
+                                                                                              </div>
+                                                                                          </div>
+                                                                                          <ul class="product-tab nav nav-tabs">
+                                                                                            {% for image in selected_product.product_images.all%}
+                                                                                              <li class="active">
+                                                                                                  <a href="#modal-item1" data-toggle="tab" class=" active show">
+                                                                                                    <img src="/media/{{ MEDIA_URL }}{{ image.image }}" alt="{{ selected_product.name }}" width="60px" height="60px">
+                                                                                                  </a>
+                                                                                              </li>
+                                                                                              {% endfor %}
+                              
+                                                                                          </ul>
+                                                                                      </div>
+                                                                                  </div>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="product-info col-xs-12 col-md-7 col-sm-7">
+                                                  <div class="detail-description">
+                                                      <div class="price-del">
+                                                          <span class="price">UGX {{selected_product.selling_price}}</span>
+                                                          <span class="float-right">
+                                                              <span class="availb">Availability: </span>
+                                                              <span class="check">
+                                                                  <i class="fa fa-check-square-o" aria-hidden="true">{{selected_product.number_in_stock}}</i>IN STOCK</span>
+                                                          </span>
+                                                      </div>
+                                                      <p class="description">{{selected_product.short_description}}</p>
+                                                      <div class="has-border cart-area">
+                                                          <div class="product-quantity">
+                                                              <div class="qty">
+                                                                  <div class="input-group">
+                                                                      <div class="quantity">
+                                                                          <span class="control-label">QTY : </span>
+                                                                          <input type="text" name="qty" id="quantity_wanted" value="1" class="input-group form-control">
+
+                                                                          <span class="input-group-btn-vertical">
+                                                                              <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button">
+                                                                                  +
+                                                                              </button>
+                                                                              <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button">
+                                                                                  -
+                                                                              </button>
+                                                                          </span>
+                                                                      </div>
+                                                                      <span class="add">
+                                                                          <button class="btn btn-primary add-to-cart add-item" data-button-action="add-to-cart" type="submit">
+                                                                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                              <span>Add to cart</span>
+                                                                          </button>
+                                                                          <a class="addToWishlist" href="#">
+                                                                              <i class="fa fa-heart" aria-hidden="true"></i>
+                                                                          </a>
+                                                                      </span>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="clearfix"></div>
+                                                          <p class="product-minimal-quantity">
+                                                          </p>
+                                                      </div>
+                                                      <div class="d-flex2 has-border">
+                                                          <div class="btn-group">
+                                                              <a href="#">
+                                                                  <i class="zmdi zmdi-share"></i>
+                                                                  <span>Share</span>
+                                                              </a>
+                                                              <a href="#" class="email">
+                                                                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                                                                  <span>SEN TO A FRIEND</span>
+                                                              </a>
+                                                              <a href="#" class="print">
+                                                                  <i class="zmdi zmdi-print"></i>
+                                                                  <span>Print</span>
+                                                              </a>
+                                                          </div>
+                                                      </div>
+                                                      <div class="rating-comment has-border d-flex">
+                                                          <div class="review-description d-flex">
+                                                              <span>REVIEW :</span>
+                                                              <div class="rating">
+                                                                  <div class="star-content">
+                                                                      <div class="star"></div>
+                                                                      <div class="star"></div>
+                                                                      <div class="star"></div>
+                                                                      <div class="star"></div>
+                                                                      <div class="star"></div>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                          <div class="read after-has-border">
+                                                              <a href="#review">
+                                                                  <i class="fa fa-commenting-o color" aria-hidden="true"></i>
+                                                                  <span>READ REVIEWS (3)</span>
+                                                              </a>
+                                                          </div>
+                                                          <div class="apen after-has-border">
+                                                              <a href="#review">
+                                                                  <i class="fa fa-pencil color" aria-hidden="true"></i>
+                                                                  <span>WRITE A REVIEW</span>
+                                                              </a>
+                                                          </div>
+                                                      </div>
+                                                      <div class="content">
+                                                          <p>SKU :
+                                                              <span class="content2">
+                                                                  <a href="#">e-02154</a>
+                                                              </span>
+                                                          </p>
+                                                          <p>Categories :
+                                                              <span class="content2">
+                                                                  <a href="#">Clothing</a>,
+                                                                  <a href="#">Men's Jackets</a>
+                                                              </span>
+                                                          </p>
+                                                          <p>tags :
+                                                              <span class="content2">
+                                                                  <a href="#">Jacket</a>,
+                                                                  <a href="#">Overcoat</a>,
+                                                                  <a href="#">Luxury</a>,
+                                                                  <a href="#">men</a>,
+                                                                  <a href="#">summer</a>,
+                                                                  <a href="#">autumn</a>
+                                                              </span>
+                                                          </p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                    
+                                          <div class="review">
+                                              <ul class="nav nav-tabs">
+                                                  <li class="active">
+                                                      <a data-toggle="tab" href="#description" class="active show">Description</a>
+                                                  </li>
+                                                  <li>
+                                                      <a data-toggle="tab" href="#tag">Product Tags</a>
+                                                  </li>
+                                                  <li>
+                                                      <a data-toggle="tab" href="#review">Reviews (2)</a>
+                                                  </li>
+                                              </ul>
                       
-          
-                        <h3 class="showcase-title">{{ selected_product.name }}</h3>
-          
-                        <p class="showcase-desc">
-                          <blockquote>{{ selected_product.category }}</blockquote>
-                        </p>
-                      <p class="showcase-desc">
-                          <strong>{{ selected_product.short_description }}</strong>
-                      </p>
-                      <p class="showcase-desc">UGX {{ selected_product.long_description }}</p>
-              
-                      <div class="price-box">
-                        <p class="price">UGX {{ selected_product.selling_price }}</p>
-          
+                                              <div class="tab-content">
+                                                  <div id="description" class="tab-pane fade in active show">
+                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
+                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                          tempor incididunt ut labore et dolore magna aliqua.
+                                                      </p>
+                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
+                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                          tempor incididunt ut labore et dolore magna aliqua.
+                                                      </p>
+                                                  </div>
                         
-              
-                        <del>UGX {{ selected_product.discount_price }}</del>
+                                                  <div id="review" class="tab-pane fade">
+                                                      <div class="spr-form">
+                                                          <div class="user-comment">
+                                                              <div class="spr-review">
+                                                                  <div class="spr-review-header">
+                                                                      <span class="spr-review-header-byline">
+                                                                          <strong>Peter Capidal</strong> -
+                                                                          <span>Apr 14, 2018</span>
+                                                                      </span>
+                                                                      <div class="rating">
+                                                                          <div class="star-content">
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="spr-review-content">
+                                                                      <p class="spr-review-content-body">In feugiat venenatis enim, non finibus metus bibendum
+                                                                          eu. Proin massa justo, eleifend fermentum varius
+                                                                          quis, semper gravida quam. Cras nec enim sed
+                                                                          lacus viverra luctus. Nunc quis accumsan mauris.
+                                                                          Aliquam fermentum sit amet est id scelerisque.
+                                                                          Nam porta risus metus.</p>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="spr-review preview2">
+                                                                  <div class="spr-review-header">
+                                                                      <span class="spr-review-header-byline">
+                                                                          <strong>David James</strong> -
+                                                                          <span>Apr 13, 2018</span>
+                                                                      </span>
+                                                                      <div class="rating">
+                                                                          <div class="star-content">
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                              <div class="star"></div>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="spr-review-content">
+                                                                      <p class="spr-review-content-body">In feugiat venenatis enim, non finibus metus bibendum
+                                                                          eu. Proin massa justo, eleifend fermentum varius
+                                                                          quis, semper gravida quam. Cras nec enim sed
+                                                                          lacus viverra luctus. Nunc quis accumsan mauris.
+                                                                          Aliquam fermentum sit amet est id scelerisque.
+                                                                          Nam porta risus metus.</p>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <form method="post" action="#" class="new-review-form">
+                                                          <input type="hidden" name="review[rating]" value="3">
+                                                          <input type="hidden" name="product_id">
+                                                          <h3 class="spr-form-title">Write a review</h3>
+                                                          <fieldset>
+                                                              <div class="spr-form-review-rating">
+                                                                  <label class="spr-form-label">Your Rating</label>
+                                                                  <fieldset class="ratings">
+                                                                      <input type="radio" id="star5" name="rating" value="5" />
+                                                                      <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                                                      <input type="radio" id="star4half" name="rating" value="4 and a half" />
+                                                                      <input type="radio" id="star4" name="rating" value="4" />
+                                                                      <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                                                      <input type="radio" id="star3half" name="rating" value="3 and a half" />
+                                                                      <input type="radio" id="star3" name="rating" value="3" />
+                                                                      <label class="full" for="star3" title="Meh - 3 stars"></label>
+                                                                      <input type="radio" id="star2half" name="rating" value="2 and a half" />
+                                                                      <input type="radio" id="star2" name="rating" value="2" />
+                                                                      <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                                      <input type="radio" id="star1half" name="rating" value="1 and a half" />
+                                                                      <input type="radio" id="star1" name="rating" value="1" />
+                                                                      <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                                                      <input type="radio" id="starhalf" name="rating" value="half" />
+                                                                  </fieldset>
+                                                              </div>
+                                                          </fieldset>
+                                                          <fieldset class="spr-form-contact">
+                                                              <div class="spr-form-contact-name">
+                                                                  <input class="spr-form-input spr-form-input-text form-control" value="" placeholder="Enter your name">
+                                                              </div>
+                                                              <div class="spr-form-contact-email">
+                                                                  <input class="spr-form-input spr-form-input-email form-control" value="" placeholder="Enter your email">
+                                                              </div>
+                                                          </fieldset>
+                                                          <fieldset>
+                                                              <div class="spr-form-review-body">
+                                                                  <div class="spr-form-input">
+                                                                      <textarea class="spr-form-input-textarea" rows="10" placeholder="Write your comments here"></textarea>
+                                                                  </div>
+                                                              </div>
+                                                          </fieldset>
+                                                          <div class="submit">
+                                                              <input type="submit" name="addComment" id="submitComment" class="btn btn-default" value="Submit Review">
+                                                          </div>
+                                                      </form>
+                                                  </div>
+                                                  <div id="tag" class="tab-pane fade in">
+                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
+                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                          tempor incididunt ut labore et dolore magna aliqua.
+                                                      </p>
+                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
+                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                          tempor incididunt ut labore et dolore magna aliqua.
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  {% endif %}
+                              </div>
+                          </div>
                       </div>
-              
-                      <a href="{% url 'add-to-cart' selected_product.id  %}"><button class="add-cart-btn">add to cart</button></a>
-              
-                      <div class="showcase-status">
-                        <div class="wrapper">
-                          <p>
-                            already sold: <b>20</b>
-                          </p>
-              
-                          <p>
-                            available: <b>40</b>
-                          </p>
-                        </div>
-              
-                        <div class="showcase-status-bar"></div>
-                      </div>
-              
-                      <div class="countdown-box">
-              
-                        <p class="countdown-desc">
-                          Hurry Up! Offer ends in:
-                        </p>
-              
-                        <div class="countdown">
-              
-                          <div class="countdown-content">
-              
-                            <p class="display-number">360</p>
-              
-                            <p class="display-text">Days</p>
-              
-                          </div>
-              
-                          <div class="countdown-content">
-                            <p class="display-number">24</p>
-                            <p class="display-text">Hours</p>
-                          </div>
-              
-                          <div class="countdown-content">
-                            <p class="display-number">59</p>
-                            <p class="display-text">Min</p>
-                          </div>
-              
-                          <div class="countdown-content">
-                            <p class="display-number">00</p>
-                            <p class="display-text">Sec</p>
-                          </div>
-              
-                        </div>
-              
-                      </div>
-              
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-    </div>
-</div>
-
-<!-- Add Slick Carousel files -->
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-<!-- Initialize Slick Carousel -->
-<script>
-    $(document).ready(function(){
-        $('.slick-carousel').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            slidesToShow: 1,
-            adaptiveHeight: true,
-            // Add more options as needed
-        });
-    });
-</script>
-
-<script>
-  // Check if messages are present
-  {% if messages %}
-    // Iterate through each message
-    {% for message in messages %}
-      // Extract the product name from the message
-      var productName = '{{ message|cut:" added to cart successfully!" }}';
-
-      // Create a new toast notification for each message
-      var toast = document.createElement('div');
-      toast.className = 'notification-toast';
-      toast.setAttribute('data-toast', '');
-
-      var closeButton = document.createElement('button');
-      closeButton.className = 'toast-close-btn';
-      closeButton.setAttribute('data-toast-close', '');
-      closeButton.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
-
-      var toastBanner = document.createElement('div');
-      toastBanner.className = 'toast-banner';
-      toastBanner.innerHTML = '<i class="bi bi-check-circle-fill"></i>';
-
-      var toastDetail = document.createElement('div');
-      toastDetail.className = 'toast-detail';
-
-      var toastMessage = document.createElement('p');
-      toastMessage.className = 'toast-message';
-      toastMessage.innerText = '{{ message }}';
-
-      var toastTitle = document.createElement('p');
-      toastTitle.className = 'toast-title';
-      toastTitle.innerText = productName;
-
-      var toastMeta = document.createElement('p');
-      toastMeta.className = 'toast-meta';
-      toastMeta.innerHTML = '<time datetime="PT2M">A Few Minutes</time> ago';
-
-      // Append elements to the toast notification
-      toastDetail.appendChild(toastMessage);
-      toastDetail.appendChild(toastTitle);
-      toastDetail.appendChild(toastMeta);
-
-      toast.appendChild(closeButton);
-      toast.appendChild(toastBanner);
-      toast.appendChild(toastDetail);
-
-      // Append the toast notification to the document body
-      document.body.appendChild(toast);
-    {% endfor %}
-  {% endif %}
-</script>
-
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
 {% endblock %}
