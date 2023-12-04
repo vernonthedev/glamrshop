@@ -1,9 +1,4 @@
 
-
-
-
-
-
 {% extends 'ecom/base.html' %}
 {% load widget_tweaks %}
 
@@ -13,23 +8,16 @@
     .card {
        max-width: 600px;
        width: 100%;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
        padding: 20px;
        margin: auto;
        margin-top: 50px;
+       border: none;
    }
    
    .form-group {
        margin-bottom: 20px;
    }
    
-   .form-control {
-       padding: 12px;
-       font-size: 16px;
-       border: none; /* Remove the default border */
-       border-bottom: 1px solid black; /* Add a bottom border */
-       background-color: transparent; /* Make the background transparent */
-   }
    
    .alert-danger {
        color: #721c24;
@@ -41,10 +29,28 @@
    }
    
    .btn-primary {
-       background-color: grey;
-       border: 1px solid grey; /* Add a border to the button */
-       padding: 12px;
-       font-size: 16px;
+       font-size: .114583333in;
+       text-transform: uppercase;
+       margin-top: 1.5rem;
+       margin-right: 0;
+       margin-bottom: 1.5rem;
+       margin-left: 0;
+       font-weight: 600;
+       color: #fff;
+       border-top-color: transparent;
+       border-right-color: transparent;
+       border-bottom-color: transparent;
+       border-left-color: transparent;
+       background: #343434;
+       border-radius: 1.125pc;
+       padding-top: 6.75pt;
+       padding-right: 1.5625pc;
+       padding-bottom: 6.75pt;
+       padding-left: 1.5625pc;
+       text-align: center;
+       white-space: nowrap;
+       vertical-align: middle;
+       transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
    }
    
    .btn-primary:hover {
@@ -58,10 +64,34 @@
    }
    
    </style>
+   <br><br><br><br><br>
+   <div class="wrap-banner">
+   
+       <!-- breadcrumb -->
+       <nav class="breadcrumb-bg">
+           <div class="container no-index">
+               <div class="breadcrumb">
+                   <ol>
+                       <li>
+                           <a href="#">
+                               <span>Home</span>
+                           </a>
+                       </li>
+                       <li>
+                           <a href="#">
+                               <span>Register</span>
+                           </a>
+                       </li>
+                   </ol>
+               </div>
+           </div>
+       </nav>
+   
+   </div>
 <div class="card">
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h1 class="text-center">Customer SignUp</h1>
+    <h1 class="text-center title-page">Customer SignUp</h1>
     {% if form.non_field_errors %}
         <div class="alert alert-danger" role="alert">
             {{ form.non_field_errors }}
@@ -98,7 +128,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-primary btn-block" value="Submit">
+        <input type="submit" class="btn btn-primary btn-block" value="Register">
     </div>
     <div class="forgot-password">
         <span>

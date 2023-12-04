@@ -3,93 +3,115 @@
 
 {% block content %}
 <style>
+ 
+ .btn-primary {
+     font-size: .114583333in;
+     text-transform: uppercase;
+     margin-top: 1.5rem;
+     margin-right: 0;
+     margin-bottom: 1.5rem;
+     margin-left: 0;
+     font-weight: 600;
+     color: #fff;
+     border-top-color: transparent;
+     border-right-color: transparent;
+     border-bottom-color: transparent;
+     border-left-color: transparent;
+     background: #343434;
+     border-radius: 1.125pc;
+     padding-top: 6.75pt;
+     padding-right: 1.5625pc;
+     padding-bottom: 6.75pt;
+     padding-left: 1.5625pc;
+     text-align: center;
+     white-space: nowrap;
+     vertical-align: middle;
+     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ }
+ 
+ .btn-primary:hover {
+     background-color: grey;
+     border: 1px solid grey;
+ }
+ #edit-btn{
+  color: white;
+ }
+ .profile-image img{
+  width: 100px;
+  border-radius: 10px;
+  height: 100px;
+ }
+ </style>
+    <br><br><br><br><br>
+<div class="main-content">
+  <div class="wrap-banner">
 
+      <!-- breadcrumb -->
+      <nav class="breadcrumb-bg">
+          <div class="container no-index">
+              <div class="breadcrumb">
+                  <ol>
+                      <li>
+                          <a href="#">
+                              <span>Home</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="#">
+                              <span>My Account</span>
+                          </a>
+                      </li>
+                  </ol>
+              </div>
+          </div>
+      </nav>
 
-  :root {
-    --primary-color: #ef96b1;
-    --light-black: rgba(0, 0, 0, 0.89);
-    --black: #000;
-    --white: #fff;
-    --grey: #aaa;
-  }
+      <div class="acount head-acount">
+          <div class="container">
+              <div id="main">
+                  <h1 class="title-page">My Account</h1>
+                  <div class="profile-image mb-5" align="center">
+                    <img src="{{MEDIA_URL}}{{ customer.profile_pic.url }}" alt="Profile Pic">
+                  </div>              
+                  <div class="content" id="block-history">
+                      <table class="std table">
+                          <tbody>
+                              <tr>
+                                  <th class="first_item">My Name :</th>
+                                  <td>{{ request.user }}</td>
+                              </tr>
+                              <tr>
+                                  <th class="first_item">Full Names :</th>
+                                  <td>{{ request.user.first_name }} {{ request.user.last_name }}</td>
+                              </tr>
+                              <tr>
+                                  <th class="first_item">Address :</th>
+                                  <td>{{ customer.address }}</td>
+                              </tr>
+                              <tr>
+                                  <th class="first_item">Phone :</th>
+                                  <td>{{ customer.mobile }}</td>
+                              </tr>
+                          </tbody>
+                      </table>
 
-  .profile-container {
-    margin-top: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+                  </div>
+                  
+                  <button class="btn btn-primary" data-link-action="sign-in" type="submit">
+                    <a href="{% url 'edit-profile'%}" id="edit-btn">
+                      Edit Profile
+                    </a>
+                  </button>
+                  <div class="order">
+                      <h4>Order
+                          <span class="detail">History</span>
+                      </h4>
+                      <p>You haven't placed any orders yet.</p>
+                  </div>
+              </div>
 
-  .profile-image {
-    flex: 1;
-    max-width: 300px;
-    margin-right: 20px;
-  }
-
-  .profile-image img {
-    width: 100%;
-    border-radius: 5%;
-  }
-
-  .profile-details {
-    flex: 1;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    max-width: 500px;
-    width: 100%;
-  }
-
-  blockquote {
-    border-left: 5px solid var(--primary-color);
-    padding-left: 20px;
-    margin-bottom: 0;
-  }
-
-  .contact-info {
-    margin-top: 10px;
-  }
-
-  .edit-button {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 50px;
-  }
-
-  .btn-edit {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 10px 20px;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-</style>
-
-<div class="container">
-  <h3 align="center">Account Settings</h3>
-  <div class="profile-container">
-    <div class="profile-image">
-      <img src="{% static customer.profile_pic.url %}" alt="Profile Pic">
-    </div>
-    <div class="profile-details">
-      <blockquote>
-        <p>Username: {{ request.user }}</p>
-        <small><cite title="Source Title">Address: {{ customer.address }} <i class="glyphicon glyphicon-map-marker"></i></cite></small>
-      </blockquote>
-      <p class="contact-info"><i class="glyphicon glyphicon-phone"></i>Contact: {{ customer.mobile }}</p>
-    </div>
-  </div>
-
-  <div class="edit-button">
-    <a href="/edit-profile" class="btn-edit"><i class="ion-edit"></i> Edit Profile</a>
+          </div>
+      </div>
   </div>
 </div>
-
 {% endblock content %}
