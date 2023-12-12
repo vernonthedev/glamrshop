@@ -52,11 +52,11 @@
 
 
 
-<style>
+<!-- <style>
   .nivoSlider{
     height: 90vh;
   }
-</style>
+</style> -->
 
 
         <!-- slide show -->
@@ -181,6 +181,7 @@
                 
                                                                     {% if product.product_images.first %}
                                                                     <img class="img-fluid image-cover" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
+                                                                    <img class="img-fluid image-secondary" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
                                                                 {% else %}
                                                                     <!-- Provide a default image or leave it empty based on your design -->
                                                                     <img class="img-fluid image-cover" src="{% static 'default.jpg' %}" alt="{{ product.name }}">

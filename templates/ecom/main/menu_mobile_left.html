@@ -8,10 +8,12 @@
             <div class="box-content block-content">
                 <div class="verticalmenu" role="navigation">
                     <ul class="menu level1">
+                        {% for category in categories %}
                         <li class="item  parent">
                             <a href="#" class="hasicon" title="SIDE TABLE">
-                                <i class="bi bi-bag-check-fill"></i>CATEGORY</a>
+                                <i class="bi bi-bag-check-fill"></i>{{ category.name }}</a>
                         </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
