@@ -40,22 +40,7 @@
                               <div class="block-content">
                                 {% for category in categories %}
                                   <div class="cateTitle hasSubCategory open level1">
-                                      <span class="arrow collapsed collapse-icons" data-toggle="collapse" data-target="#livingroom" aria-expanded="false" role="status">
-                                          <i class="zmdi zmdi-minus"></i>
-                                          <i class="zmdi zmdi-plus"></i>
-                                      </span>
-                                      <a class="cateItem" href="#">{{category.name}}</a>
-                                      <div class="subCategory collapse" id="livingroom" aria-expanded="true" role="status">
-                                          <div class="cateTitle">
-                                              <a href="#" class="cateItem">Side Table</a>
-                                              <div class="subCategory collapse" id="subCategory-fruits" aria-expanded="true" role="status">
-                                                  <div class="cateTitle">
-                                                      <a href="#" class="cateItem">subCategory</a>
-                                                  </div>
-
-                                              </div>
-                                          </div>
-                                      </div>
+                                      <a class="cateItem" href="{% url 'shop_category' category.slug %}">{{category.name}}</a>   
                                   </div>
                                   {% endfor %}
                               </div>
@@ -124,10 +109,10 @@
                                   <div class="row">
 
                                     {% for product in products %}
-                                      <div class="item text-center col-md-4">
+                                      <div class="item text-center col-md-6 col-lg-4">
                                           <div class="product-miniature js-product-miniature item-one first-item">
                                               <div class="thumbnail-container border">
-                                                  <a href="{% url 'selected_product' product_id=product.id %}">
+                                                  <a href="{% url 'selected_product' product_name=product.name %}">
                                                     {% if product.product_images.first %}
                                                     <img class="img-fluid image-cover" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
                                                     <img class="img-fluid image-secondary" src="{{ product.product_images.first.image.url }}" alt="{{ product.name }}">
@@ -188,6 +173,9 @@
 
                                   </div>
                               </div>
+
+
+                              
 
                               <div class="pagination">
                                 <span class="step-links">

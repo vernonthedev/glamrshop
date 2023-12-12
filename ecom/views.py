@@ -32,12 +32,12 @@ def home_view(request):
     return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart, 'categories':categories})
 
 
-def view_product(request, product_id=None):
+def view_product(request, product_name=None):
     products = models.Product.objects.all()
     selected_product = None
 
-    if product_id:
-        selected_product = get_object_or_404(models.Product, id=product_id)
+    if product_name:
+        selected_product = get_object_or_404(models.Product, name=product_name)
 
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
@@ -265,14 +265,22 @@ def view_feedback_view(request):
 #---------------------------------------------------------------------------------
 #------------------------ PUBLIC CUSTOMER RELATED VIEWS START ---------------------
 #---------------------------------------------------------------------------------
-def shop_view(request):
-    all_products = models.Product.objects.all()
+def shop_view(request, category_slug=None):
+    categories = models.Category.objects.all()
+    # If a category ID is specified in the URL, filter products by category
+    if category_slug:
+        category = get_object_or_404(models.Category, slug=category_slug)
+        products = models.Product.objects.filter(category=category)
+        
+    else:
+        products = models.Product.objects.all()
+        
 
     # Configure the number of products per page
-    products_per_page = 2  
+    products_per_page = 10  # You can adjust this value
 
     # Use Paginator to paginate the list of products
-    paginator = Paginator(all_products, products_per_page)
+    paginator = Paginator(products, products_per_page)
 
     # Get the current page number from the request's GET parameters
     page = request.GET.get('page', 1)
@@ -298,8 +306,7 @@ def shop_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
 
-    return render(request, 'ecom/shop.html', {'products': products, 'product_count_in_cart': product_count_in_cart})
-
+    return render(request, 'ecom/shop.html', {'products': products, 'product_count_in_cart': product_count_in_cart, 'categories':categories})
 
 
 def search_view(request):

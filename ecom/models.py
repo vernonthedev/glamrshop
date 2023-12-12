@@ -2,12 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 import os
+from autoslug import AutoSlugField
 
 
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=40)
+    slug = AutoSlugField(unique=True, populate_from='name', default="")
 
     def __str__(self):
         return self.name
@@ -16,6 +18,7 @@ class SubCategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=40)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.name

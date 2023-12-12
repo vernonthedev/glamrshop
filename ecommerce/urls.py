@@ -19,6 +19,7 @@ urlpatterns = [
     path('afterlogin', views.afterlogin_view,name='afterlogin'),
     path('logout', LogoutView.as_view(template_name='ecom/home.html'),name='logout'),
     path('shop', views.shop_view, name='shop'),
+    path('shop/<slug:category_slug>/', views.shop_view, name='shop_category'),
     path('aboutus', views.aboutus_view, name='aboutus'),
     path('contactus', views.contactus_view,name='contactus'),
     path('search', views.search_view,name='search'),
@@ -56,7 +57,7 @@ urlpatterns = [
     # path('customerlogin', LoginView.as_view(template_name='ecom/customerlogin.html'),name='customerlogin'),
     path('customerlogin/', CustomLoginView.as_view(), name='customerlogin'),
     path('customer-home', views.customer_home_view,name='customer-home'),
-    path('all-products/<int:product_id>/', views.view_product, name='selected_product'),
+    path('products/<str:product_name>/', views.view_product, name='selected_product'),
 
     path('my-order', views.my_order_view,name='my-order'),
     path('my-profile', views.my_profile_view,name='my-profile'),
