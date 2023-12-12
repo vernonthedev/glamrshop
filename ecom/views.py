@@ -20,6 +20,7 @@ class CustomLoginView(LoginView):
 def home_view(request):
     products=models.Product.objects.all()
     categories = models.Category.objects.all()
+    best_sellers = models.Product.objects.filter(best_seller=True)
     
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
@@ -29,7 +30,7 @@ def home_view(request):
         product_count_in_cart=0
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart, 'categories':categories})
+    return render(request,'ecom/home.html',{'products':products,'product_count_in_cart':product_count_in_cart, 'categories':categories, 'best_sellers':best_sellers})
 
 
 def view_product(request, product_name=None):
@@ -654,3 +655,5 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message, settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
             return render(request, 'ecom/contactussuccess.html')
     return render(request, 'ecom/contactus.html', {'form':sub})
+
+

@@ -199,41 +199,26 @@
                                           </li>
                                           <hr>
                                           {% else %}
-                                          <h2>No Products in Shopping Cart</h2>
+                                            <h2>No Products in Shopping Cart</h2>
                                           {% endif %}
                                           {% endfor%}
                                         
                                       </ul>
                                   </div>
                               </div>
-                              <a href="/customer-address" class="continue btn btn-danger pull-xs-right">
+                              <a href="/customer-address" class="continue btn btn-danger pull-xs-right mb-5">
                                   Continue Purchase
                               </a>
                                
                           </div>
                           <br><br>
-                          <div class="cart-grid-right col-xs-12 col-lg-3">
+                          <div class="cart-grid-right col-xs-12 col-lg-3 card bg-dark text-light mt-5 mb-5">
                               <div class="cart-summary">
                                   <div class="cart-detailed-totals">
                                       <div class="cart-summary-products">
-                                          <div class="summary-label">There are - items in your cart</div>
+                                          <div class="card-title"><strong>Cart Summary</strong></div>
                                       </div>
-                                      <div class="cart-summary-line" id="cart-subtotal-products">
-                                          <span class="label js-subtotal">
-                                              Total products:
-                                          </span>
-                                          <span class="value">-</span>
-                                      </div>
-                                      <!-- <div class="cart-summary-line" id="cart-subtotal-shipping">
-                                          <span class="label">
-                                              Total Shipping:
-                                          </span>
-                                          <span class="value">Free</span>
-                                          <div>
-                                              <small class="value"></small>
-                                          </div>
-                                      </div> -->
-                                      <div class="cart-summary-line cart-total btn btn-success">
+                                      <div class="cart-summary-line cart-total h4">
                                           <span class="value">Total:</span>
                                           <span class="value">UGX {{ total }}</span>
                                       </div>
@@ -244,19 +229,19 @@
                                       <li>
                                           <div class="block-reassurance-item">
                                               <img src="{% static 'assets/img/product/check1.png'%}" alt="Security policy (edit with Customer reassurance module)">
-                                              <span>Security policy (edit with Customer reassurance module)</span>
+                                              <span>Security policy (edited with Customer reassurance module)</span>
                                           </div>
                                       </li>
                                       <li>
                                           <div class="block-reassurance-item">
                                               <img src="{% static 'assets/img/product/check2.png'%}" alt="Delivery policy (edit with Customer reassurance module)">
-                                              <span>Delivery policy (edit with Customer reassurance module)</span>
+                                              <span>Delivery policy (edited with Customer reassurance module)</span>
                                           </div>
                                       </li>
                                       <li>
                                           <div class="block-reassurance-item">
                                               <img src="{% static 'assets/img/product/check3.png'%}" alt="Return policy (edit with Customer reassurance module)">
-                                              <span>Return policy (edit with Customer reassurance module)</span>
+                                              <span>Return policy (edited with Customer reassurance module)</span>
                                           </div>
                                       </li>
                                   </ul>
