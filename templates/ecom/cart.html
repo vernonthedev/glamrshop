@@ -91,46 +91,182 @@
   }
 </style>
 <br><br><br><br><br>
-<div class="container cart-container">
-  <div class="panel panel-success">
-    <h3 class="">My Cart</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Image</th>
-          <th>Price</th>
-          <th>Description</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for p in products %}
-          {% if p %}
-            <tr>
-              <td>{{ p.name }}</td>
-              <td><img src="{% static p.product_image.url %}" alt="Product Image"></td>
-              <td>UGX {{ p.selling_price }}</td>
-              <td>{{ p.short_description }}</td>
-              <td><a class="btn btn-danger" href="{% url 'remove-from-cart' p.id %}">Remove</a></td>
-            </tr>
-          {% else %}
-            <tr>
-              <td colspan="5" style="text-align: center;">
-                <h1>No products</h1>
-              </td>
-            </tr>
-          {% endif %}
-        {% endfor %}
-      </tbody>
-    </table>
+<nav class="breadcrumb-bg">
+  <div class="container no-index">
+      <div class="breadcrumb">
+          <ol>
+              <li>
+                  <a href="#">
+                      <span>Home</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <span>Shopping Cart</span>
+                  </a>
+              </li>
+          </ol>
+      </div>
   </div>
+</nav>
 
-  <div class="btn-container" style="display: flex; justify-content: space-between;">
-    <button class="btn btn-danger">Total UGX {{ total }}</button>
-    <a href="/customer-address" style="text-decoration: none;">
-      <button class="btn btn-success">Purchase</button>
-    </a>
+
+<!-- main content -->
+<div class="main-content" id="cart">
+  <!-- main -->
+  <div id="wrapper-site">
+      <!-- breadcrumb -->
+      
+      <div class="container">
+          <div class="row">
+              <div id="content-wrapper" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 onecol">
+                  <section id="main">
+                      <div class="cart-grid row">
+                          <div class="col-md-9 col-xs-12 check-info">
+                              <h1 class="title-page">Shopping Cart</h1>
+                              <div class="cart-container">
+                                  <div class="cart-overview js-cart">
+                                      <ul class="cart-items">
+
+
+                                          {% for product in products %}
+                                          {% if product %}
+                                          <li class="cart-item">
+                                              <div class="product-line-grid row justify-content-between">
+                                                  <!--  product left content: image-->
+                                                  <div class="product-line-grid-left col-md-2">
+                                                      <span class="product-image media-middle">
+                                                          <a href="product-detail.html">
+
+                                                            {% if product.product_images.exists %}
+                                                                                                {% with first_image=product.product_images.first %}                                                                          
+                                                                                                    <img src="/media/{{ first_image.image }}" alt="{{ product.name }}" width="100%" class="img-fluid">
+                                                                                                {% endwith %}
+                                                                                            {% else %}
+                                                                                             <!-- DEFAULT IMAGE -->
+                                                                                                <img src="{% static 'default.jpg' %}" alt="{{ product.name }}" width="60px">
+                                                                                            {% endif %}
+
+                                                          </a>
+                                                      </span>
+                                                  </div>
+                                                  <div class="product-line-grid-body col-md-6">
+                                                      <div class="product-line-info">
+                                                          <a class="label" href="product-detail.html" data-id_customization="0">{{ product.name}}</a>
+                                                      </div>
+                                                      <div class="product-line-info product-price">
+                                                          <span class="value">UGX {{ product.selling_price }}</span>
+                                                      </div>
+                                                     
+                                                      <div class="product-line-info">
+                                                          <span class="label-atrr">Description:</span>
+                                                          <span class="value">{{ product.short_description }}</span>
+                                                      </div>
+                                                  </div>
+                                                  <div class="product-line-grid-right text-center product-line-actions col-md-4">
+                                                      <div class="row">
+                                                          <div class="col-md-5 col qty">
+                                                              <div class="label">Qty:</div>
+                                                              <div class="quantity">
+                                                                  <input type="text" name="qty" value="1" class="input-group form-control">
+
+                                                                  <span class="input-group-btn-vertical">
+                                                                      <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-up" type="button">
+                                                                          +
+                                                                      </button>
+                                                                      <button class="btn btn-touchspin js-touchspin bootstrap-touchspin-down" type="button">
+                                                                          -
+                                                                      </button>
+                                                                  </span>
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-md-5 col price">
+                                                              <div class="label">Total:</div>
+                                                              <div class="product-price total">
+                                                                  {{ product.selling_price }}
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-md-2 col text-xs-right align-self-end">
+                                                              <div class="cart-line-product-actions ">
+                                                                  <a class="remove-from-cart" rel="nofollow" href="{% url 'remove-from-cart' product.id %}" data-link-action="delete-from-cart" data-id-product="1">
+                                                                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                                  </a>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </li>
+                                          <hr>
+                                          {% else %}
+                                          <h2>No Products in Shopping Cart</h2>
+                                          {% endif %}
+                                          {% endfor%}
+                                        
+                                      </ul>
+                                  </div>
+                              </div>
+                              <a href="/customer-address" class="continue btn btn-danger pull-xs-right">
+                                  Continue Purchase
+                              </a>
+                               
+                          </div>
+                          <br><br>
+                          <div class="cart-grid-right col-xs-12 col-lg-3">
+                              <div class="cart-summary">
+                                  <div class="cart-detailed-totals">
+                                      <div class="cart-summary-products">
+                                          <div class="summary-label">There are - items in your cart</div>
+                                      </div>
+                                      <div class="cart-summary-line" id="cart-subtotal-products">
+                                          <span class="label js-subtotal">
+                                              Total products:
+                                          </span>
+                                          <span class="value">-</span>
+                                      </div>
+                                      <!-- <div class="cart-summary-line" id="cart-subtotal-shipping">
+                                          <span class="label">
+                                              Total Shipping:
+                                          </span>
+                                          <span class="value">Free</span>
+                                          <div>
+                                              <small class="value"></small>
+                                          </div>
+                                      </div> -->
+                                      <div class="cart-summary-line cart-total btn btn-success">
+                                          <span class="value">Total:</span>
+                                          <span class="value">UGX {{ total }}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div id="block-reassurance">
+                                  <ul>
+                                      <li>
+                                          <div class="block-reassurance-item">
+                                              <img src="{% static 'assets/img/product/check1.png'%}" alt="Security policy (edit with Customer reassurance module)">
+                                              <span>Security policy (edit with Customer reassurance module)</span>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="block-reassurance-item">
+                                              <img src="{% static 'assets/img/product/check2.png'%}" alt="Delivery policy (edit with Customer reassurance module)">
+                                              <span>Delivery policy (edit with Customer reassurance module)</span>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="block-reassurance-item">
+                                              <img src="{% static 'assets/img/product/check3.png'%}" alt="Return policy (edit with Customer reassurance module)">
+                                              <span>Return policy (edit with Customer reassurance module)</span>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </section>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
 
