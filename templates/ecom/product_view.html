@@ -3,6 +3,29 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+    .card{
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    overflow-x: auto; /* Make the container horizontally scrollable */
+  }
+  .price{
+    font-weight: bolder;
+    font-size: large;
+  }
+  .desc{
+    font-weight: bolder;
+  }
+</style>
+
+
+
+
 <br><br><br><br><br>
     <!-- main content -->
     {% if selected_product %}
@@ -42,10 +65,10 @@
                                   <div class="sidebar-3 sidebar-collection col-lg-3 col-md-3 col-sm-4">
                                     <!-- category panel section -->
                                   </div>
-                                  
-                                  <div class="col-sm-8 col-lg-9 col-md-9">
+                              
+                                  <div class="col-sm-8 col-lg-9 col-md-9 mt-3">
                                       <div class="main-product-detail">
-                                          <h2>{{ selected_product.name }}</h2>
+                                          <h4>{{ selected_product.name }}</h4>
                                           <div class="product-single row">
                                               <div class="product-detail col-xs-12 col-md-5 col-sm-5">
                                                   <div class="page-content" id="content">            
@@ -136,10 +159,10 @@
                                                       </div>
                                                   </div>
                                               </div>
-                                              <div class="product-info col-xs-12 col-md-7 col-sm-7">
+                                              <div class="product-info col-xs-12 col-md-7 col-sm-7 card">
                                                   <div class="detail-description">
                                                       <div class="price-del">
-                                                          <span class="price">UGX {{selected_product.selling_price}}</span>
+                                                          <span class="price">UGX {{selected_product.selling_price}} |  UGX  <del>{{selected_product.discount_price}}</del></span>
                                                           <span class="float-right">
                                                               <span class="availb">Availability: {{selected_product.number_in_stock}}</span>
                                                               <span class="check">
@@ -147,6 +170,9 @@
                                                           </span>
                                                       </div>
                                                       <p class="description">{{selected_product.short_description}}</p>
+
+                                                      <hr>
+
                                                       <div class="has-border cart-area">
                                                           <div class="product-quantity">
                                                               <div class="qty">
@@ -164,14 +190,18 @@
                                                                               </button>
                                                                           </span>
                                                                       </div>
-                                                                      <span class="add">
-                                                                          <button class="btn btn-primary add-to-cart add-item" data-button-action="add-to-cart" type="submit">
-                                                                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                                              <span>Add to cart</span>
-                                                                          </button>
-                                                                          <a class="addToWishlist" href="#">
-                                                                              <i class="fa fa-heart" aria-hidden="true"></i>
-                                                                          </a>
+
+                                                                      <span class="add" style="padding-left: 20px;">
+                                                                        
+
+                                                                          <form action="{% url 'add-to-cart' selected_product.id %}" method="post" class="formAddToCart">
+                                                                            {% csrf_token %}
+                                                                            <input type="hidden" name="id_product" value="{{ selected_product.id }}">
+                                                                            <button type="submit" class="btn btn-primary add-to-cart add-item" data-button-action="add-to-cart">
+                                                                                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                                                Add to Cart
+                                                                            </button>
+                                                                        </form>
                                                                       </span>
                                                                   </div>
                                                               </div>
@@ -180,88 +210,39 @@
                                                           <p class="product-minimal-quantity">
                                                           </p>
                                                       </div>
-                                                      <div class="d-flex2 has-border">
-                                                          <div class="btn-group">
-                                                              <a href="#">
-                                                                  <i class="zmdi zmdi-share"></i>
-                                                                  <span>Share</span>
-                                                              </a>
-                                                              <a href="#" class="email">
-                                                                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                                  <span>SEN TO A FRIEND</span>
-                                                              </a>
-                                                              <a href="#" class="print">
-                                                                  <i class="zmdi zmdi-print"></i>
-                                                                  <span>Print</span>
-                                                              </a>
-                                                          </div>
-                                                      </div>
-                                             
-                                                      <div class="content">
-                                                          <p>SKU :
-                                                              <span class="content2">
-                                                                  <a href="#">e-02154</a>
-                                                              </span>
-                                                          </p>
-                                                          <p>Categories :
-                                                              <span class="content2">
-                                                                  <a href="#">Clothing</a>,
-                                                                  <a href="#">Men's Jackets</a>
-                                                              </span>
-                                                          </p>
-                                                          <p>tags :
-                                                              <span class="content2">
-                                                                  <a href="#">Jacket</a>,
-                                                                  <a href="#">Overcoat</a>,
-                                                                  <a href="#">Luxury</a>,
-                                                                  <a href="#">men</a>,
-                                                                  <a href="#">summer</a>,
-                                                                  <a href="#">autumn</a>
-                                                              </span>
-                                                          </p>
-                                                      </div>
+
+                                                      <hr>
+
+                                                      <div class="review">
+                                                        <ul class="nav nav-tabs">
+                                                            <li class="active">
+                                                                <a data-toggle="tab" href="#description" class="active show desc">Description</a>
+                                                            </li>
+                                                            
+                                                        </ul>
+                                
+                                                        <div class="tab-content">
+                                                            <div id="description" class="tab-pane fade in active show">
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
+                                                                    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                                    tempor incididunt ut labore et dolore magna aliqua.
+                                                                </p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
+                                                                    ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                                    tempor incididunt ut labore et dolore magna aliqua.
+                                                                </p>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    
                                                   </div>
                                               </div>
                                           </div>
                     
-                                          <div class="review">
-                                              <ul class="nav nav-tabs">
-                                                  <li class="active">
-                                                      <a data-toggle="tab" href="#description" class="active show">Description</a>
-                                                  </li>
-                                                  <li>
-                                                      <a data-toggle="tab" href="#tag">Product Tags</a>
-                                                  </li>
-                                                  
-                                              </ul>
-                      
-                                              <div class="tab-content">
-                                                  <div id="description" class="tab-pane fade in active show">
-                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                          tempor incididunt ut labore et dolore magna aliqua.
-                                                      </p>
-                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                          tempor incididunt ut labore et dolore magna aliqua.
-                                                      </p>
-                                                  </div>
-                                                  <div id="tag" class="tab-pane fade in">
-                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                          tempor incididunt ut labore et dolore magna aliqua.
-                                                      </p>
-                                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                          eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem
-                                                          ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                          tempor incididunt ut labore et dolore magna aliqua.
-                                                      </p>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                         
                                       </div>
                                   </div>
                                   {% endif %}
@@ -273,6 +254,6 @@
           </div>
       </div>
   </div>
-  
+  <br><br>
 
 {% endblock %}

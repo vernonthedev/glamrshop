@@ -54,6 +54,7 @@ class Product(models.Model):
     long_description = models.TextField(max_length=1000, default="")
     images = models.ManyToManyField(Image, blank=True, related_name='product_images')
 
+
     def __str__(self):
         return self.name
 

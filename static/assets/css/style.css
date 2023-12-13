@@ -1,3 +1,11 @@
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
 [class~="ratings"] [class~="half"]:before {
   content: "";
 }

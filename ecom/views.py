@@ -296,7 +296,6 @@ def shop_view(request, category_slug=None):
         # If the page is out of range, deliver the last page of results
         products = paginator.page(paginator.num_pages)
 
-    # Rest of your existing code
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
         counter = product_ids.split('|')
@@ -304,8 +303,7 @@ def shop_view(request, category_slug=None):
     else:
         product_count_in_cart = 0
 
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('afterlogin')
+
 
     return render(request, 'ecom/shop.html', {'products': products, 'product_count_in_cart': product_count_in_cart, 'categories':categories})
 
@@ -436,15 +434,44 @@ def send_feedback_view(request):
 #---------------------------------------------------------------------------------
 @login_required(login_url='customerlogin')
 @user_passes_test(is_customer)
-def customer_home_view(request):
-    products=models.Product.objects.all()
+def customer_home_view(request, category_slug=None):
+    categories = models.Category.objects.all()
+    # If a category ID is specified in the URL, filter products by category
+    if category_slug:
+        category = get_object_or_404(models.Category, slug=category_slug)
+        products = models.Product.objects.filter(category=category)
+        
+    else:
+        products = models.Product.objects.all()
+        
+
+    # Configure the number of products per page
+    products_per_page = 10  # You can adjust this value
+
+    # Use Paginator to paginate the list of products
+    paginator = Paginator(products, products_per_page)
+
+    # Get the current page number from the request's GET parameters
+    page = request.GET.get('page', 1)
+
+    try:
+        # Get the Page object for the requested page
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        # If the page parameter is not an integer, deliver the first page
+        products = paginator.page(1)
+    except EmptyPage:
+        # If the page is out of range, deliver the last page of results
+        products = paginator.page(paginator.num_pages)
+
     if 'product_ids' in request.COOKIES:
         product_ids = request.COOKIES['product_ids']
-        counter=product_ids.split('|')
-        product_count_in_cart=len(set(counter))
+        counter = product_ids.split('|')
+        product_count_in_cart = len(set(counter))
     else:
-        product_count_in_cart=0
-    return render(request,'ecom/shop.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+        product_count_in_cart = 0
+
+    return render(request, 'ecom/shop.html', {'products': products, 'product_count_in_cart': product_count_in_cart, 'categories':categories})
 
 
 

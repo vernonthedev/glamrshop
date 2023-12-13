@@ -52,12 +52,18 @@
 
 
 
-<!-- <style>
-  .nivoSlider{
-    height: 90vh;
-  }
-</style> -->
-
+<style>
+    .nivoSlider {
+      height: 90vh; 
+    }
+  
+    @media (max-width: 767px) {
+      .nivoSlider {
+        height: 100%; 
+      }
+    }
+</style>
+  
 
         <!-- slide show -->
         <div class="section banner myban">
@@ -138,7 +144,9 @@
                         </div>
                     </div>
 
-                    <!-- product living room -->
+
+
+
                     <div class="section living-room">
                         <div class="container">
                             <div class="tiva-row-wrap row">
@@ -161,7 +169,7 @@
                                                         <a href="#new" data-toggle="tab" class="active">New Arrivals</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#best" data-toggle="tab">Best Sellers</a>
+                                                        <a href="#best" >Best Sellers</a>
                                                     </li>
                                                     <li>
                                                         <a href="#sale" data-toggle="tab">Special Products</a>
@@ -189,7 +197,8 @@
 
                                                                 
                                                                 </a>
-                                                                    <div class="product-flags discount">-10%</div>
+                                                              
+
                                                                 </div>
                                                                 <div class="product-description">
                                                                     <div class="product-groups">
@@ -267,7 +276,7 @@
                         </div>
 
                         <!-- best seller -->
-                        <div class="section best-sellers col-lg-12 col-xs-12">
+                        <div class="section best-sellers col-lg-12 col-xs-12" id="best">
                             <div class="row">
                                 <div class="col-md-12 col-xs-12">
                                     <div class="groupproductlist">
